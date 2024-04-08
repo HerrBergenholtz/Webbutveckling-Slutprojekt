@@ -1,0 +1,145 @@
+body {
+    margin: 0;
+    line-height: 150%;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+h1 {
+    margin: 0;
+    font-size: 1.3em;
+}
+
+header {
+    height: 50px;
+    background-color: #f3f3f3;
+}
+
+header nav {
+    height: 100%;
+}
+
+header nav ul {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-template-rows: 1fr;
+    justify-content: space-between;
+    align-items: baseline;
+    list-style-type: none;
+    padding-inline-start: 0;
+    margin: 0px;
+    height: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+header nav ul li {
+    display: grid;
+}
+
+header nav ul li a {
+    font-size: 1em;
+    text-align: center;
+}
+
+/*======= Main =======*/
+/*======= Sektion 1 =======*/
+main section:nth-child(1) {
+    display: flex;
+    justify-content: center;
+    background-image: url(../src/the-rat-pack-1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 500px;
+}
+
+h2 {
+    color: rgba(236, 236, 236, 0.85);
+    font-size: 3em;
+    margin: 0;
+    margin-top: 60px;
+}
+
+/*======= Sektion 2 =======*/
+main section:nth-child(2) {
+    padding: 20px;
+}
+
+main section:nth-child(2) iframe {
+    width: 100%;
+    height: 200px;
+}
+
+main section:nth-child(2) h3 {
+    text-align: center;
+    font-size: 1.3em;
+}
+
+main section:nth-child(2) p {
+    font-size: 1.1em;
+    text-align: center;
+}
+
+/*======= Sektion 3 =======*/
+main section:nth-child(3) {
+    padding: 20px;
+    display: grid;
+    gap: 50px;
+}
+
+main section:nth-child(3) h3 {
+    text-align: center;
+    font-size: 1.4;
+    margin: 0;
+}
+
+main article {
+    display: flex;
+    flex-direction: column;
+}
+
+main article img {
+    width: 90%;
+    margin: auto;
+}
+
+main article h4 {
+    text-align: center;
+    font-size: 1.3;
+}
+
+main article p {
+    text-align: center;
+    margin: 0;
+    font-size: 1.2;
+}
+
+/*======= Footer =======*/
+footer p {
+    text-align: center;
+}
+
+
+a:link {
+    color: black;
+}
+
+a:visited {
+    color: inherit;
+}
+
+a:focus {
+    color: inherit;
+}
+
+a:hover {
+    color: inherit;
+}
+
+a:active {
+    color: inherit;
+}
