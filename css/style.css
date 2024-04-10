@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    line-height: 150%;
+    line-height: 1.5;
 }
 
 .wrapper {
@@ -14,7 +14,7 @@ h1 {
 }
 
 header {
-    height: 50px;
+    height: 60px;
     background-color: #f3f3f3;
 }
 
@@ -86,6 +86,7 @@ main section:nth-child(2) p {
 
 /*======= Sektion 3 =======*/
 main section:nth-child(3) {
+    background-color: #ececec;
     padding: 20px;
     display: grid;
     gap: 50px;
@@ -100,6 +101,10 @@ main section:nth-child(3) h3 {
 main article {
     display: flex;
     flex-direction: column;
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 main article img {
