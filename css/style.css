@@ -19,19 +19,25 @@ body {
 h1 {
     margin: 0;
     font-size: 1.3em;
+    line-height: 1;
 }
 
 header {
+    display: flex;
+    align-items: center;
     height: 60px;
     background-color: #fff;
 }
 
 header nav {
-    height: 100%;
+    display: flex;
+    align-items: center;
+    width: 100%;
 }
 
 header nav ul {
     display: grid;
+    gap: 15px;
     grid-template-columns: auto auto auto auto;
     grid-template-rows: 1fr;
     justify-content: space-around;
@@ -40,22 +46,24 @@ header nav ul {
     padding-inline-start: 0;
     margin: 0px;
     height: 100%;
-    padding: 10px;
     box-sizing: border-box;
 }
 
 header nav ul li {
     display: grid;
+    height: 45px;
+    justify-content: stretch;
 }
 
 header nav ul li a {
     font-size: 1em;
     text-align: center;
+    line-height: 3;
 }
 
 /*======= Main =======*/
 /*======= Sektion 1 =======*/
-main section:nth-child(1) {
+main > section:nth-child(1) {
     display: flex;
     justify-content: center;
     background-image: url(../src/the-rat-pack-2.jpg);
@@ -66,30 +74,30 @@ main section:nth-child(1) {
 }
 
 /*======= Sektion 2 =======*/
-main section:nth-child(2) {
+main > section:nth-child(2) {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
 }
 
-main iframe {
+main > iframe {
     width: 100%;
     height: 200px;
 }
 
-main section:nth-child(2) h2 {
+main > section:nth-child(2) h2 {
     text-align: center;
     font-size: 1.4em;
 }
 
-main section:nth-child(2) p {
+main > section:nth-child(2) p {
     font-size: 1.2em;
     text-align: center;
 }
 
 /*======= Sektion 3 =======*/
-main section:nth-child(3) {
+main > section:nth-child(3) {
     background-color: #ececec;
     padding: 20px;
     display: flex;
@@ -98,13 +106,13 @@ main section:nth-child(3) {
     gap: 30px;
 }
 
-main section:nth-child(3) h2 {
+main > section:nth-child(3) h2 {
     text-align: center;
     font-size: 1.5em;
     margin: 0;
 }
 
-main article {
+main > article {
     display: flex;
     flex-direction: column;
     background-color: white;
@@ -113,18 +121,18 @@ main article {
     box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-main article img {
+main > article img {
     width: 90%;
     margin: auto;
     border-radius: 10px;
 }
 
-main article h3 {
+main > article h3 {
     text-align: center;
     font-size: 1.4em;
 }
 
-main article p {
+main > article p {
     text-align: center;
     margin: 0;
     font-size: 1.1em;
@@ -133,6 +141,72 @@ main article p {
 /*======= Footer =======*/
 footer p {
     text-align: center;
+}
+
+/*======= information.html ==========*/
+
+#information h2 {
+    font-size: 3em;
+    color: white;
+    text-shadow: 3px 1px 2px #000;
+}
+
+#information main > section {
+    background-color: #c9c9c9;
+}
+
+#information h3 {
+    font-size: 1.8em;
+}
+
+#information main > section > section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#information main > section > section > section {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+#information h4 {
+    font-size: 1.3em;
+    text-align: center;
+    margin: 0;
+}
+
+/*======= form =======*/
+
+form h3, 
+form p {
+    text-align: center;
+}
+
+form fieldset {
+    padding: 10px;
+}
+
+form label {
+    font-size: 1.1em;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"],
+form input[type="tel"],
+form input[list] {
+    width: 80%;
+    height: 20px;
+}
+
+form input:invalid {
+    border: red solid 2px;
+}
+
+form input[type="submit"] {
+    margin: auto;
 }
 
 a:link {
@@ -159,17 +233,22 @@ a:active {
     header nav ul {
         justify-content: start;
         gap: 25px;
+        padding-inline-start: 30px;
     }
 
-    main section:nth-child(1) {
+    nav ul li:nth-child(2) {
+        width: 50px;
+    }
+    
+    main > section:nth-child(1) {
         background-position: top;
     }
-
-    main iframe {
+    
+    main > iframe {
         width: 80vw;
     }
-
-    main article{
+    
+    main > article{
         width: 75vw;
     }
 }
@@ -192,7 +271,7 @@ a:active {
         line-height: 1.8;
     }
 
-    main section:nth-child(1) {
+    main > section:nth-child(1) {
         background-image: url(../src/the-rat-pack-4.jpg);
         background-position: center;
     }
@@ -201,49 +280,132 @@ a:active {
         padding: 50px;
     }
 
-    main section:nth-child(2) h2,
-    main section:nth-child(3) h2 {
+    main > section:nth-child(2) h2,
+    main > section:nth-child(3) h2 {
         font-size: 1.9em;
     }
 
-    main iframe {
+    main > iframe {
         height: 300px;
         width: 500px;
     }
 
-    main article:nth-child(odd) {
+    main > article:nth-child(odd) {
         flex-direction: row-reverse;
     }
 
-    main article:nth-child(even) {
+    main > article:nth-child(even) {
         flex-direction: row;
     }
 
-    main article img {
+    main > article img {
         width: 30%;
     }
 
-    main article:nth-child(3) img {
+    main > article:nth-child(3) img {
         width: 25%;
+    }
+
+    /*==== information.html ======*/
+    form input[type="text"],
+    form input[type="email"],
+    form input[type="password"],
+    form input[type="tel"],
+    form input[list] {
+        width: 50%;
+        height: 20px;
     }
 }
 
 @media screen and (min-width: 1000px) {
-    main section:nth-child(1) {
+    main > section:nth-child(1) {
         background-image: url(../src/the-rat-pack-2.jpg);
         background-position: 0 -80px;
         height: 80vh;
     }
 
-    main section:nth-child(2) section {
+    main > section:nth-child(2) section {
         display: flex;
         flex-direction: row-reverse;
         justify-content: center;
         gap: 30px;
     }
 
-    main section:nth-child(2) section p {
+    main > section:nth-child(2) section p {
         width: 50%;
         text-align: left;
+    }
+
+    /*===== information.html ======*/
+    #information main > section > section {
+        display: flex;
+        flex-direction: row;
+        gap: 60px;
+    }
+
+    #information main > section > section > section p {
+        width: 100%;
+    }
+    
+    #information main > section > section > section:nth-child(1) p {
+        text-align: left;
+    } 
+    
+    #information main > section > section > section:nth-child(2) p {
+        text-align: center;
+    }
+    
+    #information main > section > section > section:nth-child(3) p {
+        text-align: right;
+    }
+
+
+    #information main > section form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto auto auto;
+        grid-template-areas: 
+            "h3 h3"
+            "p p"
+            "field1 field2"
+            "subm subm";
+    }
+
+    /*===== form =====*/
+    main > section:nth-child(3) {
+        background-image: url(../src/the-rat-pack-6.jpg);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+
+    #information form {
+        color: #fff;
+        font-size: 1.2em;
+        text-shadow: 3px 1px 2px black;
+    }
+
+    #information form h3 {
+        grid-area: h3;
+    }
+
+    #information form p {
+        grid-area: p;
+    }
+
+    #information form fieldset {
+        width: 90%;
+    }
+
+    #information form fieldset:nth-child(3) {
+        grid-area: field1;
+    }
+
+    #information form fieldset:nth-child(4) {
+        grid-area: field2;
+    }
+
+    #information form input[type="submit"] {
+        grid-area: subm;
     }
 }

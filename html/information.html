@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="../css/style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="script.js"></script>
+        <title>The Rat Pack</title>
+    </head>
+
+    <body id="information">
+        <div class="wrapper">
+            <header>
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="../index.html"><h1>The Rat Pack</h1></a>
+                        </li>
+    
+                        <li>
+                            <a href="#">Info</a>
+                        </li>
+    
+                        <li>
+                            <a href="#">Spel</a>
+                        </li>
+
+                        <li>
+                            <a href="#">Medlemmarna</a>
+                        </li>
+                    </ul>
+                </nav>
+            </header>
+
+            <main>
+                <section>
+                    <h2>Information</h2>
+                </section>
+
+                <section>
+                    <h3>Punkter</h3>
+                
+                    <section>
+                        <section>
+                            <h4>Punkt 1</h4>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint aliquam, quod praesentium magni id aspernatur. Quod perferendis, dicta numquam veniam nulla quisquam quasi iure officia ab magnam maxime temporibus quis.</p>
+                        </section>
+    
+                        <section>
+                            <h4>Punkt 2</h4>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint aliquam, quod praesentium magni id aspernatur. Quod perferendis, dicta numquam veniam nulla quisquam quasi iure officia ab magnam maxime temporibus quis.</p>
+                        </section>
+    
+                        <section>
+                            <h4>Punkt 3</h4>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint aliquam, quod praesentium magni id aspernatur. Quod perferendis, dicta numquam veniam nulla quisquam quasi iure officia ab magnam maxime temporibus quis.</p>
+                        </section>
+                    </section>
+                </section>
+
+                <section>
+                    <form action="#"> 
+                        <h3>Din favoritartist</h3>
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquid officiis ea voluptatem? Ex culpa delectus, harum sapiente iure quis, maxime consequatur error at tenetur quod nobis ipsum nihil excepturi ab.</p>
+
+                        <fieldset>
+                            <legend>Personuppgifter</legend>
+                            <label for="namn">Namn:</label>
+                            <br>
+                            <input type="text" name="namn" id="namn" required>
+                            
+                            <br>
+
+                            <label for="mail">Mailaddress:</label>
+                            <br>
+                            <input type="email" name="mail" id="mail" required>
+
+                            <br>
+
+                            <label for="telefonnummer">Telefonnummer:</label>
+                            <br>
+                            <input type="tel" name="telefonnummer" id="telefonnummer" required>
+
+                            <br>
+
+                            <label for="lösenord">lösenord:</label>
+                            <br>
+                            <input type="password" name="password" id="lösenord" required>
+
+                            <br>
+                            
+                            <label for="myndig">Är du över 18?</label>
+                            <br>
+                            <input type="checkbox" name="myndig" id="myndig" required>
+
+                            <br>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Favorit</legend>
+
+                            <label for="favoritartist">Vilken är din favoritartist i The Rat Pack</label>
+                            <br>
+                            <input list="favoritartist" name="favoritartist" id="favoritartist" required>
+                            
+                            <datalist id="favoritartist">
+                                <option value="Frank Sinatra"></option>
+                                <option value="Dean Martin"></option>
+                                <option value="Sammy Davis Jr."></option>
+                                <option value="Joey Bishop"></option>
+                                <option value="Peter Lawford"></option>
+                            </datalist>
+
+                            <br>
+
+                            <label for="favoritlåt">Vilken av dessa är din favoritlåt</label>
+                            <br>
+                            <select name="favoritlåt" id="favoritlåt" required>
+                                <option value="#">Välj ett alternativ</option>
+                                
+                                <optgroup label="Frank Sinatra">
+                                    <option value="flyMeToTheMoon">Fly Me To The Moon</option>
+                                    <option value="somethinStupid">Somethin' Stupid</option>
+                                    <option value="myWay">My Way</option>
+                                </optgroup>
+
+                                <optgroup label="Dean Martin">
+                                    <option value="everybodyLovesSomebody">Everybody Loves Somebody</option>
+                                    <option value="thatsAmore">That's Amore</option>
+                                    <option value="onTheStreetWhereYouLive">On The Street Where You Live</option>
+                                </optgroup>
+
+                                <optgroup label="Sammy Davis Jr.">
+                                    <option value="somethingsGottaGive">Somethin's Gotta Give</option>
+                                    <option value="allOfYou">All Of You</option>
+                                    <option value="feelingGood">Feeling Good</option>
+                                </optgroup>
+
+                                <optgroup label="Joey Bishop">
+                                    <option value="coldColdHeart">Cold, Cold Heart</option>
+                                    <option value="bornToLose">Born To Lose</option>
+                                    <option value="heartbreakAvenue">Heartbrake Avenue</option>
+                                </optgroup>
+
+                                <optgroup label="Peter Lawford">
+                                    <option value="aFellaWithAnUmbrella">A Feella with an Umbrella</option>
+                                    <option value="shakinTheBluesAway">Shakin' the Blues Away</option>
+                                    <option value="theBestThingsInLifeAreFree">The Best Things In Life Are Free</option>
+                                </optgroup>
+                            </select>
+
+                            <br>
+
+                            <label for="motivering">Hur kommer det sig att du valde den artisten och låten</label>
+                            <br>
+                            <textarea name="motivering" id="motivering" cols="30" rows="6" placeholder="Skriv ditt resonemang" required></textarea>
+                            
+                            <br>
+
+                            <label for="radio">Vad tycker du om sidan?</label>
+                            <br>
+                            <input type="radio" name="betyg" id="toppen" value="toppen" checked>
+                            <label for="toppen">Toppen!</label>
+                            <br>
+                            <input type="radio" name="betyg" id="okej" value="okej">
+                            <label for="okej">Okej</label>
+                            <br>
+                            <input type="radio" name="betyg" id="dålig" value="dålig">
+                            <label for="dålig">Dålig</label>
+                        </fieldset>
+
+                        <input type="submit" value="Skicka In">
+                    </form>
+                </section>
+            </main>
+        </div>
+    </body>
+</html>
