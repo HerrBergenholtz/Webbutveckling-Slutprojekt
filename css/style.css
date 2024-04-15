@@ -195,7 +195,9 @@ form p {
 }
 
 form fieldset {
-    padding: 10px;
+    padding: 20px;
+    background-color: #c2c2c2;
+    box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 form label {
@@ -208,7 +210,8 @@ form input[type="password"],
 form input[type="tel"],
 form input[list] {
     width: 80%;
-    height: 20px;
+    height: 25px;
+    border-radius: 5px;
 }
 
 form input:invalid {
@@ -234,6 +237,47 @@ form input[type="submit"] {
 
 main > section:nth-child(4) {
     display: none;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+}
+
+table {
+    width: 90%;
+}
+
+table, th, td {
+    border-style: solid;
+    border-color: #000;
+    border-width: 1px;
+    border-collapse: collapse;
+    padding: 20px;
+    text-align: center;
+}
+
+caption {
+    font-size: 2em;
+}
+
+th[scope="col"] {
+    background-color: #dadada;
+}
+
+th[scope="row"] {
+    background-color: #adadad;
+}
+
+tr:nth-child(odd) {
+    background-color: #f3f3f3;
+}
+
+tr:nth-child(even) {
+    background-color: #dadada;
+}
+
+main section:nth-child(4) tfoot tr th,
+tfoot tr td {
+    background-color: #5a5a5a;
 }
 
 a:link {
@@ -338,13 +382,21 @@ a:active {
     form input[type="email"],
     form input[type="password"],
     form input[type="tel"],
-    form input[list] {
+    form input[list],
+    form select {
         width: 50%;
-        height: 20px;
+        height: 28px;
+        font-size: 0.9em;
     }
+
 
     form input[type="submit"] {
         width: 20%;
+    }
+
+    
+    main > section:nth-child(4) {
+        display: flex;
     }
 }
 
@@ -390,7 +442,6 @@ a:active {
         text-align: right;
     }
 
-
     #information main > section form {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -401,6 +452,7 @@ a:active {
             "field1 field2"
             "subm subm";
         gap: 30px;
+        width: 90%;
     }
 
     /*===== form =====*/
@@ -433,35 +485,7 @@ a:active {
         transition: 0.4s ease;
     }
 
-    main > section:nth-child(4) {
-        display: block;
-    }
-
-    table, th, td {
-        border-style: solid;
-        border-color: #000;
-        border-width: 1px;
-        border-collapse: collapse;
-        padding: 20px;
-    }
-
-    th[scope="col"] {
-        background-color: #dadada;
-    }
-
-    th[scope="row"] {
-        background-color: #adadad;
-    }
-
-    tr:nth-child(odd) {
-        background-color: #f3f3f3;
-    }
-
-    tr:nth-child(even) {
-        background-color: #dadada;
-    }
-
-    tfoot tr {
-        background-color: #5a5a5a;
+    table {
+        width: 50%;
     }
 }
