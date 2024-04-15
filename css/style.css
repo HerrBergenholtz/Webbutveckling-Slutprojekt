@@ -112,7 +112,7 @@ main > section:nth-child(3) h2 {
     margin: 0;
 }
 
-main > article {
+main article {
     display: flex;
     flex-direction: column;
     background-color: white;
@@ -121,18 +121,18 @@ main > article {
     box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-main > article img {
+main article img {
     width: 90%;
     margin: auto;
     border-radius: 10px;
 }
 
-main > article h3 {
+main article h3 {
     text-align: center;
     font-size: 1.4em;
 }
 
-main > article p {
+main article p {
     text-align: center;
     margin: 0;
     font-size: 1.1em;
@@ -178,6 +178,16 @@ footer p {
 }
 
 /*======= form =======*/
+#information main > section:nth-child(3) {
+    background-color: #fff;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
 
 form h3, 
 form p {
@@ -202,11 +212,28 @@ form input[list] {
 }
 
 form input:invalid {
-    border: red solid 2px;
+    border-style: solid;
+    border-color: rgb(145, 65, 65);
+    border-width: 1px;
+}
+
+form > section:last-child {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
 }
 
 form input[type="submit"] {
-    margin: auto;
+    width: 40%;
+    height: 50px;
+    border-radius: 30px;
+    border-style: none;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+main > section:nth-child(4) {
+    display: none;
 }
 
 a:link {
@@ -248,7 +275,7 @@ a:active {
         width: 80vw;
     }
     
-    main > article{
+    main article{
         width: 75vw;
     }
 }
@@ -290,19 +317,19 @@ a:active {
         width: 500px;
     }
 
-    main > article:nth-child(odd) {
+    main article:nth-child(odd) {
         flex-direction: row-reverse;
     }
 
-    main > article:nth-child(even) {
+    main article:nth-child(even) {
         flex-direction: row;
     }
 
-    main > article img {
+    main article img {
         width: 30%;
     }
 
-    main > article:nth-child(3) img {
+    main article:nth-child(3) img {
         width: 25%;
     }
 
@@ -314,6 +341,10 @@ a:active {
     form input[list] {
         width: 50%;
         height: 20px;
+    }
+
+    form input[type="submit"] {
+        width: 20%;
     }
 }
 
@@ -369,43 +400,68 @@ a:active {
             "p p"
             "field1 field2"
             "subm subm";
+        gap: 30px;
     }
 
     /*===== form =====*/
-    main > section:nth-child(3) {
-        background-image: url(../src/the-rat-pack-6.jpg);
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: cover;
-    }
 
-    #information form {
-        color: #fff;
-        font-size: 1.2em;
-        text-shadow: 3px 1px 2px black;
-    }
-
-    #information form h3 {
+    form h3 {
         grid-area: h3;
+        margin: 0;
     }
 
-    #information form p {
+    form p {
         grid-area: p;
+        margin: 0;
     }
 
-    #information form fieldset {
-        width: 90%;
-    }
-
-    #information form fieldset:nth-child(3) {
+    form fieldset:nth-child(3) {
         grid-area: field1;
     }
 
-    #information form fieldset:nth-child(4) {
+    form fieldset:nth-child(4) {
         grid-area: field2;
     }
 
-    #information form input[type="submit"] {
+    form section:last-child {
         grid-area: subm;
+    }
+
+    form input[type="submit"]:hover {
+        width: 23%;
+        height: 55px;
+        transition: 0.4s ease;
+    }
+
+    main > section:nth-child(4) {
+        display: block;
+    }
+
+    table, th, td {
+        border-style: solid;
+        border-color: #000;
+        border-width: 1px;
+        border-collapse: collapse;
+        padding: 20px;
+    }
+
+    th[scope="col"] {
+        background-color: #dadada;
+    }
+
+    th[scope="row"] {
+        background-color: #adadad;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #f3f3f3;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dadada;
+    }
+
+    tfoot tr {
+        background-color: #5a5a5a;
     }
 }

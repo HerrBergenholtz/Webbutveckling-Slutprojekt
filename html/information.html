@@ -92,7 +92,7 @@
                             
                             <label for="myndig">Är du över 18?</label>
                             <br>
-                            <input type="checkbox" name="myndig" id="myndig" required>
+                            <input type="checkbox" name="myndig" id="myndig">
 
                             <br>
                         </fieldset>
@@ -100,10 +100,9 @@
                         <fieldset>
                             <legend>Favorit</legend>
 
-                            <label for="favoritartist">Vilken är din favoritartist i The Rat Pack</label>
+                            <label for="favoritArtistVal">Vilken är din favoritartist i The Rat Pack</label>
                             <br>
-                            <input list="favoritartist" name="favoritartist" id="favoritartist" required>
-                            
+                            <input type="text" list="favoritartist" name="favoritartist" id="favoritArtistVal" required>
                             <datalist id="favoritartist">
                                 <option value="Frank Sinatra"></option>
                                 <option value="Dean Martin"></option>
@@ -170,10 +169,76 @@
                             <label for="dålig">Dålig</label>
                         </fieldset>
 
-                        <input type="submit" value="Skicka In">
+                        <section>
+                            <input type="submit" value="Skicka In">
+                        </section>
                     </form>
                 </section>
+
+                <section>
+                    <table>
+                        <caption>Jämförelse av livstid och värde</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Artister</th>
+                                <th scope="col">Född</th>
+                                <th scope="col">Död</th>
+                                <th scope="col">Värde</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <th scope="row">Frank Sinatra</th>
+                                <td>12/12-1915</td>
+                                <td>14/5-1998</td>
+                                <td>$220M</td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row">Dean Martin</th>
+                                <td>7/6-1917</td>
+                                <td>25/12-1990</td>
+                                <td>$30M</td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row">Sammy Davis Jr.</th>
+                                <td>8/12-1925</td>
+                                <td>16/15-1090</td>
+                                <td>$5M</td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row">Joey Bishop</th>
+                                <td>3/2-1918</td>
+                                <td>17/10-2007</td>
+                                <td>$8M</td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row">Peter Lawford</th>
+                                <td>7/9-1923</td>
+                                <td>24/12-1984</td>
+                                <td>$1M</td>
+                            </tr>
+                        </tbody>
+
+                        <tfoot>
+                            <tr>
+                                <th scope="row">Totalt värde</th>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>$264M</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </section>
             </main>
+
+            <footer>
+                <p>Kontakt: zabe06001@utb.vaxjo.se</p>
+            </footer>
         </div>
     </body>
 </html>
