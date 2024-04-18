@@ -7,11 +7,13 @@
 }
 
 body {
+    /*Sätter margin till 0 för att underlätta styling och ökar lineheighten för att göra texten mer lättläslig*/
     margin: 0;
     line-height: 1.5;
 }
 
 .wrapper {
+    /*Wrappern innehåller allt innehåll på sidan och styr layouten med ett enspaltigt grid*/
     display: grid;
     grid-template-columns: 1fr;
 }
@@ -36,6 +38,7 @@ header nav {
 }
 
 header nav ul {
+    /*Gör så att ul visas som ett grid med fyra kolumner och en rad och positionerar innehållet vid baseline med utrymme runt varje element, tar bort padding och border*/
     display: grid;
     gap: 15px;
     grid-template-columns: auto auto auto auto;
@@ -46,7 +49,7 @@ header nav ul {
     padding-inline-start: 0;
     margin: 0px;
     height: 100%;
-    box-sizing: border-box;
+    box-sizing: border-box;/*!!!*/
 }
 
 header nav ul li {
@@ -145,8 +148,8 @@ footer p {
 
 /*======= information.html ==========*/
 
-#information h2 {
-    font-size: 3em;
+main section:first-of-type h2 {
+    font-size: 4em;
     color: white;
     text-shadow: 3px 1px 2px #000;
 }
@@ -194,10 +197,15 @@ form p {
     text-align: center;
 }
 
-form fieldset {
+form > fieldset {
     padding: 20px;
     background-color: #c2c2c2;
     box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19);
+    font-size: 1.2em;
+}
+
+form fieldset fieldset {
+    border-style: none;
 }
 
 form label {
@@ -212,12 +220,16 @@ form input[list] {
     width: 80%;
     height: 25px;
     border-radius: 5px;
+    background-color: #f1f1f1;
 }
 
-form input:invalid {
-    border-style: solid;
-    border-color: rgb(145, 65, 65);
-    border-width: 1px;
+form textarea {
+    font-size: 1em;
+    background-color: #f1f1f1;
+}
+
+form select {
+    background-color: #f1f1f1;
 }
 
 form > section:last-child {
@@ -477,6 +489,7 @@ a:active {
 
     form section:last-child {
         grid-area: subm;
+        height: 55px;
     }
 
     form input[type="submit"]:hover {

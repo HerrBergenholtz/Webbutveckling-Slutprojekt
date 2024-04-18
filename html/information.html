@@ -9,7 +9,7 @@
         <title>The Rat Pack</title>
     </head>
 
-    <body id="information">
+    <body id="information"><!--Annorlunda id på body för att kunna urskilja designen-->
         <div class="wrapper">
             <header>
                 <nav>
@@ -38,7 +38,7 @@
                     <h2>Information</h2>
                 </section>
 
-                <section>
+                <section><!--En sektion som innehåller en sektion med ett antal sektion som innehåller en punkt i form av en h4 och p tagg-->
                     <h3>Punkter</h3>
                 
                     <section>
@@ -60,49 +60,48 @@
                 </section>
 
                 <section>
-                    <form action="#"> 
+                    <form action="#"><!--Ett formulär där användaren får skriva in lite kontaktuppgifter och sedan välja och berätta om sina favoriter i the rat pcak -->
                         <h3>Din favoritartist</h3>
                         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquid officiis ea voluptatem? Ex culpa delectus, harum sapiente iure quis, maxime consequatur error at tenetur quod nobis ipsum nihil excepturi ab.</p>
 
-                        <fieldset>
-                            <legend>Personuppgifter</legend>
-                            <label for="namn">Namn:</label>
-                            <br>
-                            <input type="text" name="namn" id="namn" required>
+                        <fieldset><!--Ett fieldset för den första delen av formuläret, personuppgifter-->
+                            <legend>Personuppgifter</legend><!--Talar tydligt och tillgängligt till för användaren vad delen handlar om-->
+
+                            <label for="namn">Namn:</label><!--Varje input har ett label som beskiver vad det är som söks av användaren för tydlighet och tillgänglighet då det underlättar för talsyntes-->
+                            <br><!--br för att lägga till radbrytningar-->
+                            <input type="text" name="namn" id="namn" required><!--Användaren anger text och det är obligatoriskt-->
                             
                             <br>
 
                             <label for="mail">Mailaddress:</label>
                             <br>
-                            <input type="email" name="mail" id="mail" required>
+                            <input type="email" name="mail" id="mail" required><!--Obligatorisk mail-->
 
                             <br>
 
                             <label for="telefonnummer">Telefonnummer:</label>
                             <br>
-                            <input type="tel" name="telefonnummer" id="telefonnummer" required>
+                            <input type="tel" name="telefonnummer" id="telefonnummer" required><!--Obligatoriskt telefonnummer-->
 
                             <br>
 
                             <label for="lösenord">lösenord:</label>
                             <br>
-                            <input type="password" name="password" id="lösenord" required>
+                            <input type="password" name="password" id="lösenord" required><!--Obligatoriskt lösenord-->
 
                             <br>
                             
                             <label for="myndig">Är du över 18?</label>
                             <br>
-                            <input type="checkbox" name="myndig" id="myndig">
-
-                            <br>
+                            <input type="checkbox" name="myndig" id="myndig"><!--Valfritt att checka om man är över 18-->
                         </fieldset>
 
                         <fieldset>
-                            <legend>Favorit</legend>
+                            <legend>Favoriter</legend><!--Den andra delen av formuläret-->
 
                             <label for="favoritArtistVal">Vilken är din favoritartist i The Rat Pack</label>
                             <br>
-                            <input type="text" list="favoritartist" name="favoritartist" id="favoritArtistVal" required>
+                            <input type="text" list="favoritartist" name="favoritartist" id="favoritArtistVal" required><!--En text input som använder sig av en datalist för att ge förslag på det som användaren skriver in-->
                             <datalist id="favoritartist">
                                 <option value="Frank Sinatra"></option>
                                 <option value="Dean Martin"></option>
@@ -115,7 +114,7 @@
 
                             <label for="favoritlåt">Vilken av dessa är din favoritlåt</label>
                             <br>
-                            <select name="favoritlåt" id="favoritlåt" required>
+                            <select name="favoritlåt" id="favoritlåt" required><!--En select som innehåller flera grupper med alternativ i optgroup-->
                                 <option value="#">Välj ett alternativ</option>
                                 
                                 <optgroup label="Frank Sinatra">
@@ -153,43 +152,45 @@
 
                             <label for="motivering">Hur kommer det sig att du valde den artisten och låten</label>
                             <br>
-                            <textarea name="motivering" id="motivering" cols="30" rows="6" placeholder="Skriv ditt resonemang" required></textarea>
+                            <textarea name="motivering" id="motivering" cols="30" rows="6" placeholder="Skriv ditt resonemang" required></textarea><!--En textarea där användaren kan skriva så mycket som de vill-->
                             
                             <br>
 
-                            <label for="radio">Vad tycker du om sidan?</label>
-                            <br>
-                            <input type="radio" name="betyg" id="toppen" value="toppen" checked>
-                            <label for="toppen">Toppen!</label>
-                            <br>
-                            <input type="radio" name="betyg" id="okej" value="okej">
-                            <label for="okej">Okej</label>
-                            <br>
-                            <input type="radio" name="betyg" id="dålig" value="dålig">
-                            <label for="dålig">Dålig</label>
+                            <fieldset><!--Ett mindre fieldset som innehåller tre radioknappar, detta gör jag för att gruppera upp dem och ge dem en tydlig titel med en legend-->
+                                <legend>Vad tycker du om sidan?</legend>
+
+                                <input type="radio" name="betyg" id="toppen" value="toppen" checked>
+                                <label for="toppen">Toppen!</label>
+                                <br>
+                                <input type="radio" name="betyg" id="okej" value="okej">
+                                <label for="okej">Okej</label>
+                                <br>
+                                <input type="radio" name="betyg" id="dålig" value="dålig">
+                                <label for="dålig">Dålig</label>
+                            </fieldset>
                         </fieldset>
 
                         <section>
-                            <input type="submit" value="Skicka In">
+                            <input type="submit" value="Skicka In"><!--Knapp för att skicka in formuläret -->
                         </section>
                     </form>
                 </section>
 
                 <section>
-                    <table>
-                        <caption>Jämförelse av livstid och värde</caption>
-                        <thead>
-                            <tr>
-                                <th scope="col">Artister</th>
+                    <table><!--En tabell som jämför de olika artisterna-->
+                        <caption>Jämförelse av livstid och värde</caption><!--Caption är titel för tabellen-->
+                        <thead><!--Tabellens huvud för kolumnernas titlar-->
+                            <tr><!--tr skapar en ny rad i kolumnen-->
+                                <th scope="col">Artister</th><!--th med scope col för att specifiera att th är huvud för en kolumn-->
                                 <th scope="col">Född</th>
                                 <th scope="col">Död</th>
                                 <th scope="col">Värde</th>
                             </tr>
                         </thead>
 
-                        <tbody>
+                        <tbody><!--Tabellens huvudinnehåll-->
                             <tr>
-                                <th scope="row">Frank Sinatra</th>
+                                <th scope="row">Frank Sinatra</th><!--th som är huvud för en rad som specifieras med scope row-->
                                 <td>12/12-1915</td>
                                 <td>14/5-1998</td>
                                 <td>$220M</td>
@@ -224,7 +225,7 @@
                             </tr>
                         </tbody>
 
-                        <tfoot>
+                        <tfoot><!--Tabellens fot för att summera innehållet-->
                             <tr>
                                 <th scope="row">Totalt värde</th>
                                 <td>-</td>

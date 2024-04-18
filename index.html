@@ -2,20 +2,20 @@
 
 <html>
     <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="css/style.css">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="script.js"></script>
-        <title>The Rat Pack</title>
+        <meta charset="UTF-8"><!--Deklarerar teckenkodning till UTF-8, vilket är standard, för att öka sidans säkerhet mot kodinjektioner-->
+        <link rel="stylesheet" href="css/style.css"><!--Länk till stylesheet-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--Definierar viewport vilket möjliggör användandet av måttenheter som är relativa till klientens skärmstorlek-->
+        <script src="script.js"></script><!--Länk till skripten-->
+        <title>The Rat Pack</title><!--Titel-->
     </head>
 
     <body>
-        <div class="wrapper">
-            <header>
+        <div class="wrapper"><!--Wrapper för att styra sidans layout-->
+            <header><!--Header som innehåller en mycket enkel navigationsmeny-->
                 <nav>
                     <ul>
                         <li>
-                            <a href="index.html"><h1>The Rat Pack</h1></a>
+                            <a href="index.html"><h1>The Rat Pack</h1></a><!--h1 befinner sig i header för att öka sidans page rank-->
                         </li>
     
                         <li>
@@ -34,11 +34,13 @@
             </header>
     
             <main>
-                <section>
+                <section><!--Den första sektionen som har en bild på the rat pack som bakgrund för att inleda sidan med stil och gott intryck, förtroendegivande med så stiliga gentlemäm som hälsar en välkommen till sidan-->
+                    <h2>The Rat Pack</h2>
                 </section>
     
-                <section>
+                <section><!--Sektion som innehåller en iframe med en video på the rat pack från youtube-->
                     <h2>Introduktion till The Rat Pack</h2>
+
                     <section>
                         <iframe src="https://www.youtube.com/embed/PvY8o1UYw6s"
                             title="The Rat pack - birth of the blues live. Full comedic act and song"
@@ -48,13 +50,13 @@
                     </section>
                 </section>
     
-                <section>
+                <section><!--Sektion som innehåller artiklar för varje artist-->
                     <h2>Medlemmarna</h2>
                     
-                    <article>
+                    <article><!--Artiklarna innehåller en bild och inuti en annan sektion en titel och en text-->
                         <img src="src/frank2.jpg" alt="Frank Sinatra">
                         <section>
-                            <h3>Frank Sinatra</h3>
+                            <a href="html/frank-sinatra.html"><h3>Frank Sinatra</h3></a>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis sit nemo aperiam fuga voluptatem nulla necessitatibus, aliquid nisi tempora repudiandae impedit ratione quam eaque cum quas maxime unde rem assumenda.</p>
                         </section>
                     </article>
@@ -93,7 +95,7 @@
                 </section>
             </main>
     
-            <footer>
+            <footer><!--En enkel footer som innehåller kontaktinformation-->
                 <p>Kontakt: zabe06001@utb.vaxjo.se</p>
             </footer>
         </div>
