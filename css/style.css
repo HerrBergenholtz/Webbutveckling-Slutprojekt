@@ -22,6 +22,7 @@ h1 {
     margin: 0;
     font-size: 1.3em;
     line-height: 1;
+    height: auto;
 }
 
 header {
@@ -49,24 +50,23 @@ header nav ul {
     padding-inline-start: 0;
     margin: 0px;
     height: 100%;
-    box-sizing: border-box;/*!!!*/
 }
 
 header nav ul li {
+    /*Visar varje li som ett grid och ger det en bestämd höjd och rättfärdigar innehållet utsträckt vilket gör att länken får en större klickbar yta vilket är bra för tillgängligheten*/
     display: grid;
-    height: 45px;
     justify-content: stretch;
 }
 
 header nav ul li a {
-    font-size: 1em;
-    text-align: center;
+    /*Ökar lineheight för länkarna för att göra att de centreras*/
     line-height: 3;
 }
 
 /*======= Main =======*/
 /*======= Sektion 1 =======*/
 main > section:nth-child(1) {
+    /*Ger main en bakgrundsbild som är positionerad mitt i sektionen och täcker hela sektionen utan att repetera, bestämmer även höjden och visar sektionen som flex och rättfärdigar innehållet till mitten av sektionen*/
     display: flex;
     justify-content: center;
     background-image: url(../src/the-rat-pack-2.jpg);
@@ -76,31 +76,50 @@ main > section:nth-child(1) {
     height: 500px;
 }
 
+main > section:nth-child(1) h2 {
+    font-size: 3em;
+    color: white;
+    text-shadow: 3px 1px 2px #000;
+}
+
 /*======= Sektion 2 =======*/
 main > section:nth-child(2) {
+    /*Visar innehållet som flex i riktningen kolumn för en enspaltig layout*/
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     padding: 20px;
 }
 
-main > iframe {
-    width: 100%;
+main iframe {
+    /*Sätter en lämplig höjd och bredd för min youtube video*/
+    width: 90%;
     height: 200px;
+    margin: auto;
 }
 
 main > section:nth-child(2) h2 {
+    /*Centrerar och gör texten större*/
     text-align: center;
     font-size: 1.4em;
 }
 
 main > section:nth-child(2) p {
+    /*Centrerar och gör texten större*/
     font-size: 1.2em;
     text-align: center;
 }
 
+main > section:nth-child(2) section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 /*======= Sektion 3 =======*/
 main > section:nth-child(3) {
+    /*Sätter bakgrundsfärgen till en gråaktig färg, lägger till padding, visar som flex med riktningen kolumn och justerar innehållet till center och lägger till ett gap för att separera elementen*/
     background-color: #ececec;
     padding: 20px;
     display: flex;
@@ -116,6 +135,7 @@ main > section:nth-child(3) h2 {
 }
 
 main article {
+    /*Visar som flex med riktning kolumn, sätter bakgrundsfärgen till vit och lägger till en boxshadow för att innesluta innehållet, rundar även hörnen */
     display: flex;
     flex-direction: column;
     background-color: white;
@@ -125,6 +145,7 @@ main article {
 }
 
 main article img {
+    /*Gör så att bilden nästan är full bredd och, rundar hörnen och lägger till automatisk margin vilket centrerar innehållet*/
     width: 90%;
     margin: auto;
     border-radius: 10px;
@@ -147,13 +168,7 @@ footer p {
 }
 
 /*======= information.html ==========*/
-
-main section:first-of-type h2 {
-    font-size: 4em;
-    color: white;
-    text-shadow: 3px 1px 2px #000;
-}
-
+/*Id-selektorn #information avänds för att göra så att reglerna endast gäller för de element som finns i information.html*/ 
 #information main > section {
     background-color: #c9c9c9;
 }
@@ -171,7 +186,6 @@ main section:first-of-type h2 {
 #information main > section > section > section {
     display: flex;
     flex-direction: column;
-    gap: 0;
 }
 
 #information h4 {
@@ -189,15 +203,17 @@ form {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 20px;
+    gap: 30px;
 }
 
-form h3, 
+form h3,
 form p {
     text-align: center;
+    margin: 0;
 }
 
 form > fieldset {
+    /*Lägger till en padding och ändrar färgen samt som att jag lägger till en box shadow som ör mer tydlig på nedre och högra sidan vilket ger illusionen av djup.*/
     padding: 20px;
     background-color: #c2c2c2;
     box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19);
@@ -205,6 +221,7 @@ form > fieldset {
 }
 
 form fieldset fieldset {
+    /*det fieldset som innehåller mina radioknappar vill jag ska vara utan border då den endast är där för att gruppera knapparna och ge en legend som titel och bordern blir onödig*/
     border-style: none;
 }
 
@@ -217,6 +234,7 @@ form input[type="email"],
 form input[type="password"],
 form input[type="tel"],
 form input[list] {
+    /*Sätter en bredd, höjd, bakgrundsfärg samt rundar hörn på de flesta elementen i formuläret som jag väljer med olika attributselektorer på input*/
     width: 80%;
     height: 25px;
     border-radius: 5px;
@@ -226,19 +244,22 @@ form input[list] {
 form textarea {
     font-size: 1em;
     background-color: #f1f1f1;
+    width: 95%;
 }
-
+/*Eftersom att select och textarea ska ha en annan styling så får de egna regler*/
 form select {
-    background-color: #f1f1f1;
+    font-size: 0.9em;
+    width: 80%;
 }
 
 form > section:last-child {
+    /*Sektionen som innehåller submit knappen som finns till för att centrera knappen*/
     display: flex;
     justify-content: center;
-    padding: 10px;
 }
 
 form input[type="submit"] {
+    /*Stylar knappen med bredd och höjd samt rundade hörn och tar bort border och till sist gör så att musen är en pekare när man hovrar elementet*/
     width: 40%;
     height: 50px;
     border-radius: 30px;
@@ -247,7 +268,9 @@ form input[type="submit"] {
     cursor: pointer;
 }
 
+/*======Tabell======*/
 main > section:nth-child(4) {
+    /*Tabeller är mycket svåra att mobilanpassa och den innehåller inte vissentlig information så därför så göms den på mobil*/
     display: none;
     flex-direction: column;
     align-items: center;
@@ -259,6 +282,7 @@ table {
 }
 
 table, th, td {
+    /*Ger tabellen en en pixel bred svart heldragen border och collapsar alla för att det ska se snygg och prydligt ut, lägger även till padding för att tabellen ska bli mer luftig och lättläslig*/
     border-style: solid;
     border-color: #000;
     border-width: 1px;
@@ -272,26 +296,132 @@ caption {
 }
 
 th[scope="col"] {
+    /*Gör th som är huvud för kolumner en särskild färg*/
     background-color: #dadada;
 }
 
 th[scope="row"] {
+    /*Gör th som är huvud för rader en särskild färg*/
     background-color: #adadad;
 }
 
 tr:nth-child(odd) {
     background-color: #f3f3f3;
 }
-
+/*Lägger till zebra-striping till de vanliga cellerna*/
 tr:nth-child(even) {
     background-color: #dadada;
 }
 
-main section:nth-child(4) tfoot tr th,
+main section:nth-child(4) tfoot th,
 tfoot tr td {
+    /*Ger alla celler i tfoot till en särskild färg, använder en extra stor selektor för att överskrida th[scope="row"] reglen*/
     background-color: #5a5a5a;
 }
 
+/*====== artist.html ======*/
+/*====== Menyknapp =======*/
+#artist main > section:nth-child(1) {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: start;
+    background-image: none;
+}
+
+#artist main > section:nth-child(1) img {
+    width: 35px;
+}
+
+#artist main > section:nth-child(1) > ul {
+    display: none;
+    position: absolute;
+}
+
+#artist main > section:nth-child(1) > ul {
+    font-size: 1.4em;
+    display: none;
+    flex-direction: column;
+    margin: 20px;
+    background-color: #adadad;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: #000;
+    border-width: 1px;
+    padding: 20px;
+}
+
+#artist main > section:nth-child(1) ul {
+    list-style-type: none;
+    gap: 15px;
+}
+
+/*====== Sektion 1 =======*/
+#artist main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    background-color: #ececec;
+    padding: 15px;
+}
+
+#artist main > section:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    width: 80%;
+    height: auto;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: #000;
+    border-width: 1px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 3px 2px 10px #606060;
+}
+
+#artist main > section:nth-child(2) img {
+    width: 80%;
+    border-radius: 5px;
+}
+
+#artist main > section:nth-child(2) h2 {
+    font-size: 1.8em;
+    color: #000;
+    text-shadow: none;
+    margin: 0;
+}
+
+dl {
+    display: grid;
+    gap: 10px;
+    margin: 0;
+}
+
+dl dd {
+    margin-inline-start: 70px;
+}
+
+/*====== Sektion 2 ======*/
+main > section:nth-child(3) {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+    background-color: #ffffff;
+    border-radius: 15px;
+}
+
+main > section:nth-child(3) article {
+    border-style: solid;
+    border-color: #5f5f5f;
+    border-width: 1px;
+}
+
+
+/*Min kära älskade LoVe Focus HAte som är prydligt skrivet längst ner bland de vanliga reglerna i rätt ordning, visst är det vackert*/
 a:link {
     color: black;
 }
@@ -313,21 +443,20 @@ a:active {
 }
 
 @media screen and (min-width: 450px) {
+    /*Regler som gäller för mycket stora mobiler och mindre plattor*/
+
     header nav ul {
-        justify-content: start;
+        /*Lägger till ett gap och padding inline start nu när det finns plats för det */
         gap: 25px;
         padding-inline-start: 30px;
     }
 
-    nav ul li:nth-child(2) {
-        width: 50px;
-    }
-    
     main > section:nth-child(1) {
+        /*Ändrar positionen på bakgrundsbilden för att bättre passa till den större skärmstorleken*/
         background-position: top;
     }
     
-    main > iframe {
+    main iframe {
         width: 80vw;
     }
     
@@ -337,29 +466,37 @@ a:active {
 }
 
 @media screen and (min-width:700px) {
+    /*Regler som kommer gälla för större plattor*/
+    /*Ökar storleken på det mesta i navbaren*/
     header {
         height: 80px;
     }
 
     h1 {
-        font-size: 1.4em;
+        font-size: 1.8em;
     }
 
     header nav ul {
         gap: 40px;
     }
 
-    header nav ul li a {
+    header nav ul li {
+        height: 60%;
+    }
+
+    header nav ul li > a {
         font-size: 1.3em;
         line-height: 1.8;
     }
 
     main > section:nth-child(1) {
+        /*Byter bakgrundsbilden till en som är mer anpassad för den större skärmstorleken*/
         background-image: url(../src/the-rat-pack-4.jpg);
         background-position: center;
     }
 
     main > section:nth-child(2) {
+        /*Lägger till extra padding nu när det finns plats för det då det får sidan att se lite mer lufitg ut*/
         padding: 50px;
     }
 
@@ -368,7 +505,8 @@ a:active {
         font-size: 1.9em;
     }
 
-    main > iframe {
+    main iframe {
+        /*Sätter storleken till statiska mått då som ser bäst ut för videon nu när det finns plats för det*/
         height: 300px;
         width: 500px;
     }
@@ -376,7 +514,7 @@ a:active {
     main article:nth-child(odd) {
         flex-direction: row-reverse;
     }
-
+/*Gör så att varannan artikel visas åt motsatt rad håll för att ge en mer intressant och livlig design*/
     main article:nth-child(even) {
         flex-direction: row;
     }
@@ -386,6 +524,7 @@ a:active {
     }
 
     main article:nth-child(3) img {
+        /*Då denna bilden är lite extra hög så minskar jag storleken för att den bättre ska passa in*/
         width: 25%;
     }
 
@@ -396,6 +535,7 @@ a:active {
     form input[type="tel"],
     form input[list],
     form select {
+        /*Ökar storlek och textstorlek för att det ska se bättre ut på större skärm*/
         width: 50%;
         height: 28px;
         font-size: 0.9em;
@@ -406,21 +546,56 @@ a:active {
         width: 20%;
     }
 
-    
     main > section:nth-child(4) {
+        /*Gör så att tabellens sektion visas som flex och därför syns*/
         display: flex;
     }
+
+    /*===== Artister =======*/
+    #artist main {
+        display: grid;
+        align-items: start;
+        grid-template-columns: 2fr 1fr;
+        grid-template-rows: min-content auto;
+        grid-template-areas: 
+            "burger ."
+            "textt info";
+    }
+
+    #artist main > section:nth-child(1) {
+        grid-area: burger;
+    }
+
+    #artist main > section:nth-child(2) {
+        grid-area: info;
+        border-style: none;
+    }
+
+    #artist main > section:nth-child(3) {
+        grid-area: textt;
+    }
+
+    #artist main > section:nth-child(3) article {
+        flex-direction: column;
+        width: auto;
+        border-style: none;
+        gap: 20px;
+    }
+
 }
 
 @media screen and (min-width: 1000px) {
+    /*Regler som kommer börja gälla för datorskärmar*/
+
     main > section:nth-child(1) {
+        /*Byter ännu igen bakgrundsbilden till en som är mer anpassad för skärmstorleken och ökar höjden på sektionen*/
         background-image: url(../src/the-rat-pack-2.jpg);
         background-position: 0 -80px;
         height: 80vh;
     }
 
     main > section:nth-child(2) section {
-        display: flex;
+        /*Visar sektionen som en rad åt motsatt håll för att då hamnar texten till vänster om videon vilket känns mer naturligt då jag vill att man ska läsa texten först*/
         flex-direction: row-reverse;
         justify-content: center;
         gap: 30px;
@@ -433,7 +608,6 @@ a:active {
 
     /*===== information.html ======*/
     #information main > section > section {
-        display: flex;
         flex-direction: row;
         gap: 60px;
     }
@@ -442,6 +616,7 @@ a:active {
         width: 100%;
     }
     
+    /*Justerar texten olika för de tre sektionerna*/
     #information main > section > section > section:nth-child(1) p {
         text-align: left;
     } 
@@ -454,7 +629,9 @@ a:active {
         text-align: right;
     }
 
+    /*===== form =====*/
     #information main > section form {
+        /*Skapar en grid layout med template area för att jag vill ha en mer avancerad design då fieldsetsen ska ligga jämte varandra*/
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-template-rows: auto auto auto auto;
@@ -467,8 +644,7 @@ a:active {
         width: 90%;
     }
 
-    /*===== form =====*/
-
+    /*Tilldelar grid utrymmen*/
     form h3 {
         grid-area: h3;
         margin: 0;
@@ -492,6 +668,7 @@ a:active {
         height: 55px;
     }
 
+    /*Lägger en hover effekt på knappenm för att göra det mer responsivt till användaren*/
     form input[type="submit"]:hover {
         width: 23%;
         height: 55px;
@@ -499,6 +676,44 @@ a:active {
     }
 
     table {
+        /*Ökar storleken på tabellen*/
         width: 50%;
+    }
+
+    /*==== Artister =====*/
+    #artist main {
+        grid-template-columns: auto auto auto;
+        grid-template-rows: 1fr;
+        grid-template-areas: 
+            "burger textt info";
+    }
+
+    #artist main > section:nth-child(1) img {
+        display: none;
+    }
+
+    #artist main > section:nth-child(1) > ul {
+        display: flex;
+        position: inherit;
+        background-color: #ffffff;
+        border-style: none;
+        box-shadow: 3px 2px 10px #606060;
+    }
+
+    #artist main > section:nth-child(2) {
+        width: 20vw;
+    }
+
+    #artist main > section:nth-child(3) {
+        padding: 40px;
+    }
+
+    #artist main > section:nth-child(3) article {
+        box-shadow: none;
+    }
+
+    #artist main > section:nth-child(3) article h2,
+    #artist main > section:nth-child(3) article p {
+        text-align: left;
     }
 }
