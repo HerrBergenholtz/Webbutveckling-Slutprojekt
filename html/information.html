@@ -40,7 +40,7 @@
 
                 <section><!--En sektion som innehåller en sektion med ett antal sektion som innehåller en punkt i form av en h4 och p tagg-->
                     <h3>Punkter</h3>
-                
+                    
                     <section>
                         <section>
                             <h4>Punkt 1</h4>
@@ -60,6 +60,27 @@
                 </section>
 
                 <section>
+                    <h3>Galleri</h3>
+
+                    <section>
+                        <figure>
+                            <img src="../src/the-rat-pack-5.jpg" alt="The Rat Pack">
+                            <figcaption>The Rat Pack</figcaption>
+                        </figure>
+                        
+                        <figure>
+                            <img src="../src/the-rat-pack-7.jpg" alt="The Rat Pack">
+                            <figcaption>The Rat Pack</figcaption>
+                        </figure>
+                        
+                        <figure>
+                            <img src="../src/the-rat-pack-6.jpg" alt="The Rat Pack">
+                            <figcaption>The Rat Pack</figcaption>
+                        </figure>
+                    </section>
+                </section>
+
+                <section>
                     <form action="#"><!--Ett formulär där användaren får skriva in lite kontaktuppgifter och sedan välja och berätta om sina favoriter i the rat pcak -->
                         <h3>Din favoritartist</h3>
                         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquid officiis ea voluptatem? Ex culpa delectus, harum sapiente iure quis, maxime consequatur error at tenetur quod nobis ipsum nihil excepturi ab.</p>
@@ -69,7 +90,7 @@
 
                             <label for="namn">Namn:</label><!--Varje input har ett label som beskiver vad det är som söks av användaren för tydlighet och tillgänglighet då det underlättar för talsyntes-->
                             <br><!--br för att lägga till radbrytningar-->
-                            <input type="text" name="namn" id="namn" required><!--Användaren anger text och det är obligatoriskt-->
+                            <input type="text" name="namn" id="namn" pattern="\w*" required><!--Användaren anger text och det är obligatoriskt-->
                             
                             <br>
 
@@ -115,7 +136,7 @@
                             <label for="favoritlåt">Vilken av dessa är din favoritlåt</label>
                             <br>
                             <select name="favoritlåt" id="favoritlåt" required><!--En select som innehåller flera grupper med alternativ i optgroup-->
-                                <option value="">Välj ett alternativ</option>
+                                <option value="" selected>Välj ett alternativ</option>
                                 
                                 <optgroup label="Frank Sinatra">
                                     <option value="flyMeToTheMoon">Fly Me To The Moon</option>
@@ -171,7 +192,7 @@
                         </fieldset>
 
                         <section>
-                            <input type="submit" value="Skicka In"><!--Knapp för att skicka in formuläret -->
+                            <button type="submit">Skicka In</button><!--Knapp för att skicka in formuläret -->
                         </section>
                     </form>
                 </section>

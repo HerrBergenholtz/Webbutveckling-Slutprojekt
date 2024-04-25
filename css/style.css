@@ -173,6 +173,7 @@ footer p {
 }
 
 /*======= information.html ==========*/
+/*======= Punkter ========*/
 /*Id-selektorn #information avänds för att göra så att reglerna endast gäller för de element som finns i information.html*/ 
 #information main > section {
     background-color: #c9c9c9;
@@ -199,16 +200,45 @@ footer p {
     margin: 0;
 }
 
-/*======= form =======*/
+/*======= Galleri =======*/
 #information main > section:nth-child(3) {
+    border-radius: 0;
+    background-color: #ffffff;
+}
+
+#information main > section:nth-child(3) section {
+    display: flex;
+    align-items: center;
+}
+
+#information main > section:nth-child(3) figure {
+    width: 90%;
+    padding: 10px;
+    box-shadow: 0 8px 12px 5px rgba(0, 0, 0, 0.2);
+    margin: 0;
+}
+
+#information main > section:nth-child(3) figure figcaption {
+    font-size: 2ex;
+}
+
+#information main > section:nth-child(3) img {
+    width: 100%;
+}
+
+/*======= form =======*/
+#information main > section:nth-child(4) {
+    padding: 20px;
     background-color: #fff;
+    display: flex;
+    justify-content: center;
 }
 
 form {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     gap: 30px;
+    text-align: left;
 }
 
 form h3,
@@ -263,7 +293,7 @@ form > section:last-child {
     justify-content: center;
 }
 
-form input[type="submit"] {
+form button {
     /*Stylar knappen med bredd och höjd samt rundade hörn och tar bort border och till sist gör så att musen är en pekare när man hovrar elementet*/
     width: 40%;
     height: 50px;
@@ -274,7 +304,7 @@ form input[type="submit"] {
 }
 
 /*======Tabell======*/
-main > section:nth-child(4) {
+main > section:nth-child(5) {
     /*Tabeller är mycket svåra att mobilanpassa och den innehåller inte vissentlig information så därför så göms den på mobil*/
     display: none;
     flex-direction: column;
@@ -362,6 +392,7 @@ tfoot tr td {
 
 /*====== Sektion 1 =======*/
 #artist main {
+    /*Visar main som en enspaltig kolumn*/
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -371,6 +402,7 @@ tfoot tr td {
 }
 
 #artist main > section:nth-child(2) {
+    /*Visar sektionen med översiktig information som en enspaltig kolumn och lägger till border med rundade hörn och en gråaktig box-shadow*/
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -387,11 +419,13 @@ tfoot tr td {
 }
 
 #artist main > section:nth-child(2) img {
+    /*Ger bilden rundade hörn och relativ bredd*/
     width: 80%;
     border-radius: 5px;
 }
 
 #artist main > section:nth-child(2) h2 {
+    /*Tar bort margin och även text skuggan som skulle ges till titeln från regeln på rad 81*/
     font-size: 1.8em;
     color: #000;
     text-shadow: none;
@@ -471,6 +505,7 @@ a:active {
 
 @media screen and (min-width:700px) {
     /*Regler som kommer gälla för större plattor*/
+
     /*Ökar storleken på det mesta i navbaren*/
     header {
         height: 80px;
@@ -518,7 +553,7 @@ a:active {
     main article:nth-child(odd) {
         flex-direction: row-reverse;
     }
-/*Gör så att varannan artikel visas åt motsatt rad håll för att ge en mer intressant och livlig design*/
+    /*Gör så att varannan artikel visas åt motsatt rad håll för att ge en mer intressant och livlig design*/
     main article:nth-child(even) {
         flex-direction: row;
     }
@@ -533,6 +568,15 @@ a:active {
     }
 
     /*==== information.html ======*/
+    #information main > section:nth-child(3) section {
+        flex-direction: row;
+    }
+
+    #information main > section:nth-child(3) figure {
+        margin: 0;
+        width: 100%;
+    }
+
     form input[type="text"],
     form input[type="email"],
     form input[type="password"],
@@ -546,11 +590,11 @@ a:active {
     }
 
 
-    form input[type="submit"] {
+    form button {
         width: 20%;
     }
 
-    main > section:nth-child(4) {
+    #information main > section:nth-child(5) {
         /*Gör så att tabellens sektion visas som flex och därför syns*/
         display: flex;
     }
@@ -673,7 +717,7 @@ a:active {
     }
 
     /*Lägger en hover effekt på knappenm för att göra det mer responsivt till användaren*/
-    form input[type="submit"]:hover {
+    form button:hover {
         width: 23%;
         height: 55px;
         transition: 0.4s ease;
