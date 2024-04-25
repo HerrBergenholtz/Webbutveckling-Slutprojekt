@@ -26,6 +26,7 @@ h1 {
 }
 
 header {
+    /*Visar headern som flex och justerar innehållet till center*/
     display: flex;
     align-items: center;
     height: 60px;
@@ -33,6 +34,7 @@ header {
 }
 
 header nav {
+    /*Visar navbaren som flex och justerar innehållet till center för att göra så att ul listan har lagom med plats ovan och under*/
     display: flex;
     align-items: center;
     width: 100%;
@@ -77,6 +79,7 @@ main > section:nth-child(1) {
 }
 
 main > section:nth-child(1) h2 {
+    /*Ökar storlek och ändrar färg samt som jag lägger till en svart textskugga för att göra så att texten syns tydligt*/
     font-size: 3em;
     color: white;
     text-shadow: 3px 1px 2px #000;
@@ -112,6 +115,7 @@ main > section:nth-child(2) p {
 }
 
 main > section:nth-child(2) section {
+    /*Centrerar innehållet i kolumn-riktninng med flex*/
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -129,6 +133,7 @@ main > section:nth-child(3) {
 }
 
 main > section:nth-child(3) h2 {
+    /*Centrerar text och tar bort margin*/
     text-align: center;
     font-size: 1.5em;
     margin: 0;
@@ -322,6 +327,7 @@ tfoot tr td {
 /*====== artist.html ======*/
 /*====== Menyknapp =======*/
 #artist main > section:nth-child(1) {
+    /*Jag visar sektionen som innehåller menyn som flex och rättfärdigar innehållet till starten samt som jag gör att den är 100% bred vilket gör att ikonen kommer visas till vänster*/
     width: 100%;
     height: auto;
     display: flex;
@@ -334,13 +340,10 @@ tfoot tr td {
 }
 
 #artist main > section:nth-child(1) > ul {
+    /*Listan ska inte ses utan interaktion och den ska vara absolutpositionerad då menyn ska synas över allt annat innehåll. Stylar även listan med padding, margin, en border och rundade hörn samt som jag sätter flex direction till kolumn*/
     display: none;
     position: absolute;
-}
-
-#artist main > section:nth-child(1) > ul {
     font-size: 1.4em;
-    display: none;
     flex-direction: column;
     margin: 20px;
     background-color: #adadad;
@@ -352,6 +355,7 @@ tfoot tr td {
 }
 
 #artist main > section:nth-child(1) ul {
+    /*Denna regeln gäller både den yttre och nästlade listan, det som de har gemensamt är mellanrummet och list stilen ska vara ingen*/
     list-style-type: none;
     gap: 15px;
 }
