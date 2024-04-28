@@ -21,7 +21,6 @@ body {
 h1 {
     margin: 0;
     font-size: 1.3em;
-    line-height: 1;
     height: auto;
 }
 
@@ -41,28 +40,22 @@ header nav {
 }
 
 header nav ul {
-    /*Gör så att ul visas som ett grid med fyra kolumner och en rad och positionerar innehållet vid baseline med utrymme runt varje element, tar bort padding och border*/
-    display: grid;
-    gap: 15px;
-    grid-template-columns: auto auto auto auto;
-    grid-template-rows: 1fr;
-    justify-content: space-around;
+    /*Visar ul som en flex och justerar innehållet till baseline vilket gör att elementen visas som om de är skrivna på samma rad. Tar också bort list stilen, lägger till mellanrum och justerar padding vid listans början, alltså till vänster.*/
+    display: flex;
     align-items: baseline;
+    justify-content: center;
+    gap: 20px;
+    padding-inline-start: 10px;
     list-style-type: none;
-    padding-inline-start: 0;
-    margin: 0px;
-    height: 100%;
-}
-
-header nav ul li {
-    /*Visar varje li som ett grid och ger det en bestämd höjd och rättfärdigar innehållet utsträckt vilket gör att länken får en större klickbar yta vilket är bra för tillgängligheten*/
-    display: grid;
-    justify-content: stretch;
+    margin: 0;
 }
 
 header nav ul li a {
-    /*Ökar lineheight för länkarna för att göra att de centreras*/
-    line-height: 3;
+    /*Centrerar texten och visar länkarna som inline blocks vilket gör att de kan ta höjd och bredd värde vilket jag använder för att göra länkarna större och lättare att klicka vilket är bra tillgänglighet för bra skärmar. Sätter också en större lineheight vilket centrerar texten i länkarna vertikalt.*/
+    text-align: center;
+    display: inline-block;
+    height: 40px;
+    line-height: 1.8;
 }
 
 /*======= Main =======*/
@@ -114,6 +107,10 @@ main > section:nth-child(2) p {
     text-align: center;
 }
 
+main > section:nth-child(2) p::first-letter {
+    font-size: 2rem;
+}
+
 main > section:nth-child(2) section {
     /*Centrerar innehållet i kolumn-riktninng med flex*/
     display: flex;
@@ -135,7 +132,7 @@ main > section:nth-child(3) {
 main > section:nth-child(3) h2 {
     /*Centrerar text och tar bort margin*/
     text-align: center;
-    font-size: 1.5em;
+    font-size: 3.5ch;
     margin: 0;
 }
 
@@ -143,6 +140,7 @@ main article {
     /*Visar som flex med riktning kolumn, sätter bakgrundsfärgen till vit och lägger till en boxshadow för att innesluta innehållet, rundar även hörnen */
     display: flex;
     flex-direction: column;
+    gap: 10px;
     background-color: white;
     padding: 15px;
     border-radius: 8px;
@@ -198,6 +196,14 @@ footer p {
     font-size: 1.3em;
     text-align: center;
     margin: 0;
+}
+
+#information main > section > section > section:nth-child(2) {
+    align-items: center;
+}
+
+#information ol li {
+    font-size: 3ex;
 }
 
 /*======= Galleri =======*/
@@ -276,6 +282,26 @@ form input[list] {
     background-color: #f1f1f1;
 }
 
+form input:required { /*KOLLA MED DAVID!*/
+    border-color: rgb(184, 186, 255);
+}
+
+form input:not(:required) {
+    border-color: #fff;
+}
+
+form input:checked {
+    outline-style: solid;
+    outline-width: 1px;
+    outline-color: #000000;
+}
+
+form input:disabled::after {
+    content: 'X';
+    color: #ff0000;
+    margin-left: 1px;
+}
+
 form textarea {
     font-size: 1em;
     background-color: #f1f1f1;
@@ -351,8 +377,9 @@ tr:nth-child(even) {
 main section:nth-child(4) tfoot th,
 tfoot tr td {
     /*Ger alla celler i tfoot till en särskild färg, använder en extra stor selektor för att överskrida th[scope="row"] reglen*/
-    background-color: #5a5a5a;
+    background-color: #979595;
 }
+
 
 /*====== artist.html ======*/
 /*====== Menyknapp =======*/
@@ -360,34 +387,31 @@ tfoot tr td {
     /*Jag visar sektionen som innehåller menyn som flex och rättfärdigar innehållet till starten samt som jag gör att den är 100% bred vilket gör att ikonen kommer visas till vänster*/
     width: 100%;
     height: auto;
-    display: flex;
-    justify-content: start;
     background-image: none;
 }
 
-#artist main > section:nth-child(1) img {
-    width: 35px;
-}
-
-#artist main > section:nth-child(1) > ul {
-    /*Listan ska inte ses utan interaktion och den ska vara absolutpositionerad då menyn ska synas över allt annat innehåll. Stylar även listan med padding, margin, en border och rundade hörn samt som jag sätter flex direction till kolumn*/
-    display: none;
-    position: absolute;
-    font-size: 1.4em;
-    flex-direction: column;
-    margin: 20px;
-    background-color: #adadad;
-    border-radius: 10px;
-    border-style: solid;
-    border-color: #000;
-    border-width: 1px;
-    padding: 20px;
-}
-
 #artist main > section:nth-child(1) ul {
-    /*Denna regeln gäller både den yttre och nästlade listan, det som de har gemensamt är mellanrummet och list stilen ska vara ingen*/
+    /*Listan ska inte ses utan interaktion och den ska vara absolutpositionerad då menyn ska synas över allt annat innehåll. Stylar även listan med padding, margin, en border och rundade hörn samt som jag sätter flex direction till kolumn*/
+    width: 90%;
+    height: auto;
     list-style-type: none;
-    gap: 15px;
+    padding-inline-start: 0;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 3px 2px 10px #a2a2a2;
+    margin: 0;
+}
+
+#artist main > section:nth-child(1) ul li {
+    text-align: center;
+}
+
+#artist main > section:nth-child(1) ul li a {
+    display: inline-block;
+    height: 50px;
+    width: 100%;
+    font-size: 1.3em;
+    line-height: 2;
 }
 
 /*====== Sektion 1 =======*/
@@ -424,9 +448,13 @@ tfoot tr td {
     border-radius: 5px;
 }
 
+#artist audio {
+    width: 100%;
+}
+
 #artist main > section:nth-child(2) h2 {
     /*Tar bort margin och även text skuggan som skulle ges till titeln från regeln på rad 81*/
-    font-size: 1.8em;
+    font-size: 4ex;
     color: #000;
     text-shadow: none;
     margin: 0;
@@ -489,6 +517,10 @@ a:active {
         padding-inline-start: 30px;
     }
 
+    header nav ul li a {
+        font-size: 1.1em;
+    }
+
     main > section:nth-child(1) {
         /*Ändrar positionen på bakgrundsbilden för att bättre passa till den större skärmstorleken*/
         background-position: top;
@@ -505,27 +537,14 @@ a:active {
 
 @media screen and (min-width:700px) {
     /*Regler som kommer gälla för större plattor*/
-
-    /*Ökar storleken på det mesta i navbaren*/
     header {
         height: 80px;
     }
 
-    h1 {
-        font-size: 1.8em;
-    }
-
-    header nav ul {
-        gap: 40px;
-    }
-
-    header nav ul li {
-        height: 60%;
-    }
-
-    header nav ul li > a {
+    header nav ul li a {
         font-size: 1.3em;
-        line-height: 1.8;
+        line-height: 2;
+        height: 50px;        
     }
 
     main > section:nth-child(1) {
@@ -589,7 +608,6 @@ a:active {
         font-size: 0.9em;
     }
 
-
     form button {
         width: 20%;
     }
@@ -606,12 +624,21 @@ a:active {
         grid-template-columns: 2fr 1fr;
         grid-template-rows: min-content auto;
         grid-template-areas: 
-            "burger ."
+            "local local"
             "textt info";
     }
 
     #artist main > section:nth-child(1) {
-        grid-area: burger;
+        grid-area: local;
+    }
+
+    #artist main > section:nth-child(1) ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 80px;
+        height: 80px;
     }
 
     #artist main > section:nth-child(2) {
@@ -657,11 +684,11 @@ a:active {
     /*===== information.html ======*/
     #information main > section > section {
         flex-direction: row;
-        gap: 60px;
+        gap: 10px;
     }
 
     #information main > section > section > section p {
-        width: 100%;
+        width: 90%;
     }
     
     /*Justerar texten olika för de tre sektionerna*/
@@ -669,8 +696,8 @@ a:active {
         text-align: left;
     } 
     
-    #information main > section > section > section:nth-child(2) p {
-        text-align: center;
+    #information main > section > section > section:nth-child(2) {
+        width: 50vw;
     }
     
     #information main > section > section > section:nth-child(3) p {
@@ -733,19 +760,20 @@ a:active {
         grid-template-columns: auto auto auto;
         grid-template-rows: 1fr;
         grid-template-areas: 
-            "burger textt info";
+            "local textt info";
+    }
+    
+    #artist main > section:nth-child(1) ul {
+        flex-direction: column;
+        align-items: stretch;
+        height: auto;
+        width: 15vw;
+        gap: 0;
     }
 
-    #artist main > section:nth-child(1) img {
-        display: none;
-    }
-
-    #artist main > section:nth-child(1) > ul {
-        display: flex;
-        position: inherit;
-        background-color: #ffffff;
-        border-style: none;
-        box-shadow: 3px 2px 10px #606060;
+    #artist main > section:nth-child(1) ul li a {
+        height: 70px;
+        line-height: 3;
     }
 
     #artist main > section:nth-child(2) {
@@ -760,8 +788,7 @@ a:active {
         box-shadow: none;
     }
 
-    #artist main > section:nth-child(3) article h2,
-    #artist main > section:nth-child(3) article p {
+    #artist main > section:nth-child(3) article :matches(p) {
         text-align: left;
     }
 }

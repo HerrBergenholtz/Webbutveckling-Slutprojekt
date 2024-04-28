@@ -1,33 +1,29 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="sv">
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="../css/style.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="script.js"></script>
+        <script defer src="script.js"></script>
         <title>The Rat Pack</title>
     </head>
 
     <body id="information"><!--Annorlunda id på body för att kunna urskilja designen-->
         <div class="wrapper">
-            <header>
+            <header><!--Header som innehåller en mycket enkel navigationsmeny-->
                 <nav>
                     <ul>
                         <li>
-                            <h1><a href="../index.html">The Rat Pack</a></h1>
+                            <h1><a href="../index.html">The Rat Pack</a></h1><!--h1 befinner sig i header för att öka sidans page rank-->
                         </li>
     
                         <li>
-                            <a href="#">Info</a>
+                            <a href="information.html">Information</a>
                         </li>
     
                         <li>
-                            <a href="#">Spel</a>
-                        </li>
-
-                        <li>
-                            <a href="#">Medlemmarna</a>
+                            <a href="spel.html">Spel</a>
                         </li>
                     </ul>
                 </nav>
@@ -49,7 +45,13 @@
     
                         <section>
                             <h4>Punkt 2</h4>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint aliquam, quod praesentium magni id aspernatur. Quod perferendis, dicta numquam veniam nulla quisquam quasi iure officia ab magnam maxime temporibus quis.</p>
+                            <ol start="2">
+                                <li>Frank Sinatra</li>
+                                <li>Dean Martin</li>
+                                <li>Sammy Davis Jr.</li>
+                                <li>Joey Bishop</li>
+                                <li>Peter Lawford</li>
+                            </ol>
                         </section>
     
                         <section>
@@ -102,7 +104,7 @@
 
                             <label for="telefonnummer">Telefonnummer:</label>
                             <br>
-                            <input type="tel" name="telefonnummer" id="telefonnummer" required><!--Obligatoriskt telefonnummer-->
+                            <input type="tel" name="telefonnummer" id="telefonnummer"><!--Ej obligatoriskt telefonnummer-->
 
                             <br>
 
@@ -173,7 +175,7 @@
 
                             <label for="motivering">Hur kommer det sig att du valde den artisten och låten</label>
                             <br>
-                            <textarea name="motivering" id="motivering" cols="30" rows="6" placeholder="Skriv ditt resonemang" required></textarea><!--En textarea där användaren kan skriva så mycket som de vill-->
+                            <textarea name="motivering" id="motivering" cols="30" rows="6" placeholder="Skriv ditt resonemang"></textarea><!--En textarea där användaren kan skriva så mycket som de vill-->
                             
                             <br>
 
@@ -186,7 +188,7 @@
                                 <input type="radio" name="betyg" id="okej" value="okej">
                                 <label for="okej">Okej</label>
                                 <br>
-                                <input type="radio" name="betyg" id="dålig" value="dålig">
+                                <input type="radio" name="betyg" id="dålig" value="dålig" disabled>
                                 <label for="dålig">Dålig</label>
                             </fieldset>
                         </fieldset>

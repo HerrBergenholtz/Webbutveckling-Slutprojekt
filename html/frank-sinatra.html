@@ -1,33 +1,29 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="sv">
     <head>
         <meta charset="UTF-8"><!--Deklarerar teckenkodning till UTF-8, vilket är standard, för att öka sidans säkerhet mot kodinjektioner-->
         <link rel="stylesheet" href="../css/style.css"><!--Länk till stylesheet-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--Definierar viewport vilket möjliggör användandet av måttenheter som är relativa till klientens skärmstorlek-->
-        <script src="../script.js"></script><!--Länk till skripten-->
+        <script defer src="../script.js"></script><!--Länk till skripten-->
         <title>The Rat Pack - Frank Sinatra</title><!--Titel-->
     </head>
 
     <body id="artist">
         <div class="wrapper">
-            <header>
+            <header><!--Header som innehåller en mycket enkel navigationsmeny-->
                 <nav>
                     <ul>
                         <li>
-                            <h1><a href="../index.html">The Rat Pack</a></h1>
+                            <h1><a href="../index.html">The Rat Pack</a></h1><!--h1 befinner sig i header för att öka sidans page rank-->
                         </li>
     
                         <li>
-                            <a href="information.html">Info</a>
+                            <a href="information.html">Information</a>
                         </li>
     
                         <li>
                             <a href="spel.html">Spel</a>
-                        </li>
-
-                        <li>
-                            <a href="#">Medlemmarna</a>
                         </li>
                     </ul>
                 </nav>
@@ -35,27 +31,22 @@
 
             <main>
                 <section><!--Sektionen som innehåller den lokala menyn-->
-                    <img id="burgurMenu" src="../src/Hamburger_icon.svg.png" alt="Hamburgar ikon"><!--Ikonen för den lokala menyn-->
-                    <ul>
-                        <li><a href="#">Frank Sinatra</li></a>
-                        <ul><!--En oordnad lista inuti den oordnade listan som innehåller list element med länkar till olika sektioner på sidan -->
-                            <li>
-                                <a href="#uppväxt">Uppväxt</a><!--Länkar till sektioner med deras id-->
-                            </li>
+                    <ul><!--En oordnad lista inuti den oordnade listan som innehåller list element med länkar till olika sektioner på sidan -->
+                        <li>
+                            <a href="#uppväxt">Uppväxt</a><!--Länkar till sektioner med deras id-->
+                        </li>
 
-                            <li>
-                                <a href="#liv">Liv</a>
-                            </li>
+                        <li>
+                            <a href="#liv">Liv</a>
+                        </li>
 
-                            <li>
-                                <a href="#musikkarriär">Musikkarriär</a>
-                            </li>
+                        <li>
+                            <a href="#musikkarriär">Musikkarriär</a>
+                        </li>
 
-                            <li>
-                                <a href="#filmkarriär">Filmkarriär</a>
-                            </li>
-                        </ul>
-                        <li><a href="tidslinje.html">Tidslinje</a></li>
+                        <li>
+                            <a href="#filmkarriär">Filmkarriär</a>
+                        </li>
                     </ul>
                 </section>
 
@@ -63,6 +54,8 @@
                     <img src="../src/frank2.jpg" alt="Frank Sinatra">
                     <h2>Frank Sinatra</h2>
                     
+                    <audio controls src="../src/fly-me-to-the-moon.mp3"></audio>
+
                     <dl><!--En description list som innehåller flera par av term och description som visar den generella informationen om artisten-->
                         <dt>
                             Född

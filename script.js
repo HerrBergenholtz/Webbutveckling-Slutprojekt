@@ -1,3 +1,4 @@
+/*
 let burger;
 let localNav;
 let body;
@@ -24,3 +25,4 @@ function showLocalNav () {
         localNav.style.display = "none";
     }
 }
+*/
