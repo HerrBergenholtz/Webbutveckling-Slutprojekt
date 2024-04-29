@@ -1,8 +1,7 @@
 @font-face {
-	font-family: "poppinsregular";
-	src: url("../webkit/poppins-regular-webfont.woff2") format("woff2"),
-		url("../webkit/poppins-regular-webfont.woff") format("woff");
-	font-weight: normal;
+    font-family: "playfairregular";
+    src: url(../font/PlayfairDisplay-Regular.ttf);
+	font-weight: 100;
 	font-style: normal;
 }
 
@@ -26,6 +25,7 @@ h1 {
     margin: 0;
     font-size: 1.3em;
     height: auto;
+    font-family: playfairregular;
 }
 
 header {
@@ -185,6 +185,10 @@ footer p {
     font-size: 1.8em;
 }
 
+#information main > section:nth-child(2) {
+    background-image: linear-gradient(to right, #d7d7d7, #a8a5a5);
+}
+
 #information main > section > section {
     display: flex;
     flex-direction: column;
@@ -228,6 +232,14 @@ footer p {
     margin: 0;
 }
 
+#information main > section:nth-child(3) figure {
+    transform: rotate(-1deg);
+}
+
+#information main > section:nth-child(3) figure:not(:nth-child(2)) {
+    transform: rotate(1deg);
+}
+
 #information main > section:nth-child(3) figure figcaption {
     font-size: 2ex;
 }
@@ -260,7 +272,7 @@ form p {
 form > fieldset {
     /*Lägger till en padding och ändrar färgen samt som att jag lägger till en box shadow som ör mer tydlig på nedre och högra sidan vilket ger illusionen av djup.*/
     padding: 20px;
-    background-color: #c2c2c2;
+    background-color: rgba(197, 196,196, 0.99);
     box-shadow: var(--box-shadow);
     font-size: 1.2em;
 }
@@ -278,15 +290,16 @@ form input[type="text"],
 form input[type="email"],
 form input[type="password"],
 form input[type="tel"],
-form input[list] {
+form input[list],
+select {
     /*Sätter en bredd, höjd, bakgrundsfärg samt rundar hörn på de flesta elementen i formuläret som jag väljer med olika attributselektorer på input*/
     width: 80%;
     height: 25px;
     border-radius: 5px;
-    background-color: #f1f1f1;
+    background-color: hsla(0, 0%, 100%, 0.99);
 }
 
-form input:required { /*KOLLA MED DAVID!*/
+form input:required { 
     border-color: rgb(184, 186, 255);
 }
 
@@ -301,9 +314,7 @@ form input:checked {
 }
 
 form input:disabled::after {
-    content: 'X';
-    color: #ff0000;
-    margin-left: 1px;
+    content: url(../src/disabled.svg);
 }
 
 form textarea {
@@ -356,6 +367,7 @@ td {
     border-collapse: collapse;
     padding: 20px;
     text-align: center;
+    vertical-align: middle;
 }
 
 caption {
@@ -380,10 +392,9 @@ tr:nth-child(even) {
     background-color: #dadada;
 }
 
-main section:nth-child(4) tfoot th,
 tfoot tr td {
     /*Ger alla celler i tfoot till en särskild färg, använder en extra stor selektor för att överskrida th[scope="row"] reglen*/
-    background-color: #979595;
+    background-color: #979595 !important;
 }
 
 /*====== artist.html ======*/
@@ -443,7 +454,7 @@ tfoot tr td {
     border-color: #000;
     border-width: 1px;
     padding: 20px;
-    background-color: #fff;
+    background-color: hsl(0, 0%, 100%);
     box-shadow: var(--box-shadow);
 }
 
@@ -491,6 +502,9 @@ dl dd {
     border-width: 1px;
 }
 
+#artist :target h2 {
+    text-decoration: underline;
+}
 
 /*Min kära älskade LoVe Focus HAte som är prydligt skrivet längst ner bland de vanliga reglerna i rätt ordning, visst är det vackert*/
 a:link {
@@ -766,6 +780,7 @@ a:active {
         grid-template-areas: 
             "local textt info";
     }
+
     
     #artist main > section:nth-child(1) ul {
         flex-direction: column;
