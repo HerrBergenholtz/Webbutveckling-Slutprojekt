@@ -6,6 +6,10 @@
 	font-style: normal;
 }
 
+:root {
+    --box-shadow: 3px 2px 10px #a2a2a2;
+}
+
 body {
     /*Sätter margin till 0 för att underlätta styling och ökar lineheighten för att göra texten mer lättläslig*/
     margin: 0;
@@ -144,7 +148,7 @@ main article {
     background-color: white;
     padding: 15px;
     border-radius: 8px;
-    box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: var(--box-shadow);
 }
 
 main article img {
@@ -220,7 +224,7 @@ footer p {
 #information main > section:nth-child(3) figure {
     width: 90%;
     padding: 10px;
-    box-shadow: 0 8px 12px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--box-shadow);
     margin: 0;
 }
 
@@ -257,7 +261,7 @@ form > fieldset {
     /*Lägger till en padding och ändrar färgen samt som att jag lägger till en box shadow som ör mer tydlig på nedre och högra sidan vilket ger illusionen av djup.*/
     padding: 20px;
     background-color: #c2c2c2;
-    box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: var(--box-shadow);
     font-size: 1.2em;
 }
 
@@ -342,7 +346,9 @@ table {
     width: 90%;
 }
 
-table, th, td {
+table, 
+th,
+td {
     /*Ger tabellen en en pixel bred svart heldragen border och collapsar alla för att det ska se snygg och prydligt ut, lägger även till padding för att tabellen ska bli mer luftig och lättläslig*/
     border-style: solid;
     border-color: #000;
@@ -380,7 +386,6 @@ tfoot tr td {
     background-color: #979595;
 }
 
-
 /*====== artist.html ======*/
 /*====== Menyknapp =======*/
 #artist main > section:nth-child(1) {
@@ -398,7 +403,7 @@ tfoot tr td {
     padding-inline-start: 0;
     background-color: #fff;
     border-radius: 10px;
-    box-shadow: 3px 2px 10px #a2a2a2;
+    box-shadow: var(--box-shadow);
     margin: 0;
 }
 
@@ -439,7 +444,7 @@ tfoot tr td {
     border-width: 1px;
     padding: 20px;
     background-color: #fff;
-    box-shadow: 3px 2px 10px #606060;
+    box-shadow: var(--box-shadow);
 }
 
 #artist main > section:nth-child(2) img {
@@ -471,7 +476,7 @@ dl dd {
 }
 
 /*====== Sektion 2 ======*/
-main > section:nth-child(3) {
+#artist main > section:nth-child(3) {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -480,7 +485,7 @@ main > section:nth-child(3) {
     border-radius: 15px;
 }
 
-main > section:nth-child(3) article {
+#artist main > section:nth-child(3) article {
     border-style: solid;
     border-color: #5f5f5f;
     border-width: 1px;
@@ -558,8 +563,7 @@ a:active {
         padding: 50px;
     }
 
-    main > section:nth-child(2) h2,
-    main > section:nth-child(3) h2 {
+    main > :is(section:nth-child(2), section:nth-child(3)) h2 {
         font-size: 1.9em;
     }
 
@@ -694,7 +698,7 @@ a:active {
     /*Justerar texten olika för de tre sektionerna*/
     #information main > section > section > section:nth-child(1) p {
         text-align: left;
-    } 
+    }
     
     #information main > section > section > section:nth-child(2) {
         width: 50vw;
@@ -788,7 +792,7 @@ a:active {
         box-shadow: none;
     }
 
-    #artist main > section:nth-child(3) article :matches(p) {
+    #artist main > section:nth-child(3) article :is(p, h2) {
         text-align: left;
     }
 }
