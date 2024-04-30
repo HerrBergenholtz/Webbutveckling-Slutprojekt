@@ -1,4 +1,5 @@
 @font-face {
+    /*Deklarerar en font med font-face. Då jag endast kommer använda en font till h1 taggen så används endast en fil som innehåller den vanliga versionen av fonten. Fonten är av formatet TTF som jag valde att använda för att den stöds i även äldre webbläsare, den har inte lika bra prestandard som det mer moderna WOFF formatet men för det som jag använder fonten till så föredrar jag bredare stöd.*/  
     font-family: "playfairregular";
     src: url(../font/PlayfairDisplay-Regular.ttf);
 	font-weight: 100;
@@ -6,6 +7,7 @@
 }
 
 :root {
+    /*Root selektorn låter mig deklarera variabler. Jag deklarerar en variabel för det box shadow värde som alla element med box shadow använder för att undvika onödigt arbete*/
     --box-shadow: 3px 2px 10px #a2a2a2;
 }
 
@@ -29,18 +31,17 @@ h1 {
 }
 
 header {
-    /*Visar headern som flex och justerar innehållet till center*/
-    display: flex;
-    align-items: center;
+    /*Sätter färg och statisk höjd på header*/
     height: 60px;
     background-color: #fff;
 }
 
 header nav {
-    /*Visar navbaren som flex och justerar innehållet till center för att göra så att ul listan har lagom med plats ovan och under*/
+    /*Visar navbaren som flex och justerar innehållet till center för att göra så att ul listan har lagom med plats ovan och under. Sätter även bredd och höjd till 100% för att göra så att elementet tar upp hela headerns plats vilket gör att den ligger centrerad och prydligt.*/
     display: flex;
     align-items: center;
     width: 100%;
+    height: 100%;
 }
 
 header nav ul {
@@ -55,7 +56,7 @@ header nav ul {
 }
 
 header nav ul li a {
-    /*Centrerar texten och visar länkarna som inline blocks vilket gör att de kan ta höjd och bredd värde vilket jag använder för att göra länkarna större och lättare att klicka vilket är bra tillgänglighet för bra skärmar. Sätter också en större lineheight vilket centrerar texten i länkarna vertikalt.*/
+    /*Centrerar texten och visar länkarna som inline blocks vilket gör att de kan ta höjd och bredd värde vilket jag använder för att göra länkarna större och lättare att klicka vilket är bra tillgänglighet för bra skärmar. Sätter också en större line height vilket centrerar texten i länkarna vertikalt.*/
     text-align: center;
     display: inline-block;
     height: 40px;
@@ -79,12 +80,12 @@ main > section:nth-child(1) h2 {
     /*Ökar storlek och ändrar färg samt som jag lägger till en svart textskugga för att göra så att texten syns tydligt*/
     font-size: 3em;
     color: white;
-    text-shadow: 3px 1px 2px #000;
+    text-shadow: 4px 1px 2px #000;
 }
 
 /*======= Sektion 2 =======*/
 main > section:nth-child(2) {
-    /*Visar innehållet som flex i riktningen kolumn för en enspaltig layout*/
+    /*Visar innehållet som flex i riktningen kolumn för en enspaltig layout på mobil*/
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -93,25 +94,21 @@ main > section:nth-child(2) {
 }
 
 main iframe {
-    /*Sätter en lämplig höjd och bredd för min youtube video*/
+    /*Sätter en lämplig höjd och bredd för min youtube iframe*/
     width: 90%;
     height: 200px;
     margin: auto;
 }
 
-main > section:nth-child(2) h2 {
-    /*Centrerar och gör texten större*/
-    text-align: center;
-    font-size: 1.4em;
-}
 
-main > section:nth-child(2) p {
-    /*Centrerar och gör texten större*/
-    font-size: 1.2em;
+main > section:nth-child(2) :is(p, h3) {
+    /*Centrerar och gör texten större på p element och h3 element som finns i en sektion som är det andra barnet direkt inuti main. Använder selektorn :is() för att simplifiera selektorn (istället för en gruppselektor)*/
+    font-size: 1.3em;
     text-align: center;
 }
 
 main > section:nth-child(2) p::first-letter {
+    /*Gör så att den första bokstaven i paragrafen har en textstorlek som är dubbelt så stor som föräldrar elementet med enheten Rem*/
     font-size: 2rem;
 }
 
@@ -133,15 +130,15 @@ main > section:nth-child(3) {
     gap: 30px;
 }
 
-main > section:nth-child(3) h2 {
-    /*Centrerar text och tar bort margin*/
+main > section:nth-child(3) h3 {
+    /*Centrerar text, tar bort margin och ökar textstorleken med den relativa enheten Ch vilket är relativt till bredden på siffran "0"*/
     text-align: center;
     font-size: 3.5ch;
     margin: 0;
 }
 
 main article {
-    /*Visar som flex med riktning kolumn, sätter bakgrundsfärgen till vit och lägger till en boxshadow för att innesluta innehållet, rundar även hörnen */
+    /*Visar som flex med riktning kolumn, sätter bakgrundsfärgen till vit och lägger till en boxshadow med värdet av min box-shadow variabel som jag kommer åt med var() för att innesluta innehållet, rundar även hörnen */
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -158,7 +155,7 @@ main article img {
     border-radius: 10px;
 }
 
-main article h3 {
+main article h4 {
     text-align: center;
     font-size: 1.4em;
 }
@@ -186,6 +183,7 @@ footer p {
 }
 
 #information main > section:nth-child(2) {
+    /*Sätter bakgrundsbilden till en lineär gradient från vänster till höger från en ljusare grå färg till en mörkare grå färg*/
     background-image: linear-gradient(to right, #d7d7d7, #a8a5a5);
 }
 
@@ -226,6 +224,7 @@ footer p {
 }
 
 #information main > section:nth-child(3) figure {
+    /*Stylar alla figurer lika*/
     width: 90%;
     padding: 10px;
     box-shadow: var(--box-shadow);
@@ -233,18 +232,22 @@ footer p {
 }
 
 #information main > section:nth-child(3) figure {
+    /*Roterar alla figurer -1 grad med enheten Deg (degrees)*/
     transform: rotate(-1deg);
 }
 
 #information main > section:nth-child(3) figure:not(:nth-child(2)) {
+    /*Roterar alla figurer som inte är den andra figuren i sektionen med en grad vilket jag åstadkommer med :not() selektorn vilket väljer alla element som inte passar selektorn som ges. I detta fallet så räcker det att skriva :nth-child(2). Alltså så väljer selektorn alla figurer som inte är det andra barnet i sektionen.*/
     transform: rotate(1deg);
 }
 
 #information main > section:nth-child(3) figure figcaption {
+    /*Ändrar textstorleken på figcaption till 2ex. Ex är en relatvi enhet som är relativ till höjden på lilla "x"*/
     font-size: 2ex;
 }
 
-#information main > section:nth-child(3) img {
+#information main > section:nth-child(3) figure img {
+    /*Sätter bredden på bilderna i figurerna till 100% för att fylla figuren men inte mer.*/
     width: 100%;
 }
 
@@ -270,29 +273,21 @@ form p {
 }
 
 form > fieldset {
-    /*Lägger till en padding och ändrar färgen samt som att jag lägger till en box shadow som ör mer tydlig på nedre och högra sidan vilket ger illusionen av djup.*/
+    /*Lägger till en padding och ändrar färgen med rgba samt som att jag lägger till en box shadow som ör mer tydlig på nedre och högra sidan vilket ger illusionen av djup.*/
     padding: 20px;
-    background-color: rgba(197, 196,196, 0.99);
+    background-color: rgba(197, 196, 196, 0.99);
     box-shadow: var(--box-shadow);
     font-size: 1.2em;
 }
 
 form fieldset fieldset {
-    /*det fieldset som innehåller mina radioknappar vill jag ska vara utan border då den endast är där för att gruppera knapparna och ge en legend som titel och bordern blir onödig*/
+    /*Det fieldset som innehåller mina radioknappar vill jag ska vara utan border då den endast är där för att gruppera knapparna och ge en legend som titel och bordern blir onödig*/
     border-style: none;
 }
 
-form label {
-    font-size: 1.1em;
-}
-
-form input[type="text"],
-form input[type="email"],
-form input[type="password"],
-form input[type="tel"],
-form input[list],
+form input:is([type="text"], [type="email"], [type="password"], [type="tel"], [list]),
 select {
-    /*Sätter en bredd, höjd, bakgrundsfärg samt rundar hörn på de flesta elementen i formuläret som jag väljer med olika attributselektorer på input*/
+    /*Sätter en bredd, höjd, bakgrundsfärg (med hsla(hue, saturation, lightness)) samt rundar hörn på de flesta elementen i formuläret som jag väljer med olika attributselektorer på input med :is(). Alltså så väljer den inputs inuti formuläret som är av någon av de typerna som anges*/
     width: 80%;
     height: 25px;
     border-radius: 5px;
@@ -300,20 +295,24 @@ select {
 }
 
 form input:required { 
+    /*Väljer de inputs som har attributet required med den särskilda :required selektorn och ger de en lite annorlunda border-color.*/
     border-color: rgb(184, 186, 255);
 }
 
 form input:not(:required) {
+    /*Ger de inputs som inte är required en annan border-color.*/
     border-color: #fff;
 }
 
 form input:checked {
+    /*Ger de inputs som är checked (som endast kan vara radio inputs) en 1 pixel bred, svart, heldragen utlinje.*/
     outline-style: solid;
     outline-width: 1px;
-    outline-color: #000000;
+    outline-color: #000;
 }
 
 form input:disabled::after {
+    /*Jag väljer de element som är disabled med den särskila selektorn :disabled och sedan ::after vilket används för att lägga till innehåll efter ett element. Jag väljer att innehållet ska vara en svg bild som förtydligar att elementet är disabled.*/
     content: url(../src/disabled.svg);
 }
 
@@ -322,7 +321,7 @@ form textarea {
     background-color: #f1f1f1;
     width: 95%;
 }
-/*Eftersom att select och textarea ska ha en annan styling så får de egna regler*/
+
 form select {
     font-size: 0.9em;
     width: 80%;
@@ -346,7 +345,7 @@ form button {
 
 /*======Tabell======*/
 main > section:nth-child(5) {
-    /*Tabeller är mycket svåra att mobilanpassa och den innehåller inte vissentlig information så därför så göms den på mobil*/
+    /*Tabeller är mycket svåra att mobilanpassa och den innehåller inte vissentlig information så därför så göms den på mindre skärmar*/
     display: none;
     flex-direction: column;
     align-items: center;
@@ -393,23 +392,22 @@ tr:nth-child(even) {
 }
 
 tfoot tr td {
-    /*Ger alla celler i tfoot till en särskild färg, använder en extra stor selektor för att överskrida th[scope="row"] reglen*/
-    background-color: #979595 !important;
+    /*Ger alla td i tfoot till en särskild färg*/
+    background-color: #979595;
 }
 
 /*====== artist.html ======*/
 /*====== Menyknapp =======*/
 #artist main > section:nth-child(1) {
-    /*Jag visar sektionen som innehåller menyn som flex och rättfärdigar innehållet till starten samt som jag gör att den är 100% bred vilket gör att ikonen kommer visas till vänster*/
+    /*Jag tar bort bakgrundsbilden och sätter höjden till auto då detta är den enda layout som inte har bakgrundsbild och titel i sin första sektion*/
     width: 100%;
     height: auto;
     background-image: none;
 }
 
 #artist main > section:nth-child(1) ul {
-    /*Listan ska inte ses utan interaktion och den ska vara absolutpositionerad då menyn ska synas över allt annat innehåll. Stylar även listan med padding, margin, en border och rundade hörn samt som jag sätter flex direction till kolumn*/
+    /*Stylar bredd, list-stil, padding och margin, rundade hörn och bakgrundsfärg och box-shadow*/
     width: 90%;
-    height: auto;
     list-style-type: none;
     padding-inline-start: 0;
     background-color: #fff;
@@ -423,6 +421,7 @@ tfoot tr td {
 }
 
 #artist main > section:nth-child(1) ul li a {
+    /*Liknande styling till de länkar som finns i min header*/
     display: inline-block;
     height: 50px;
     width: 100%;
@@ -442,7 +441,7 @@ tfoot tr td {
 }
 
 #artist main > section:nth-child(2) {
-    /*Visar sektionen med översiktig information som en enspaltig kolumn och lägger till border med rundade hörn och en gråaktig box-shadow*/
+    /*Visar sektionen med översiktig information som en enspaltig kolumn och lägger till border med rundade hörn och en box-shadow*/
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -468,10 +467,9 @@ tfoot tr td {
     width: 100%;
 }
 
-#artist main > section:nth-child(2) h2 {
-    /*Tar bort margin och även text skuggan som skulle ges till titeln från regeln på rad 81*/
+#artist h2 {
+    /*Tar bort margin och även text skuggan som skulle ges till titeln från regeln på rad 79*/
     font-size: 4ex;
-    color: #000;
     text-shadow: none;
     margin: 0;
 }
@@ -483,6 +481,7 @@ dl {
 }
 
 dl dd {
+    /*Ökar margin vid inline-start, alltså till vänster, för att skapa mer avstånd mellan dt och dd paren*/
     margin-inline-start: 70px;
 }
 
@@ -577,7 +576,8 @@ a:active {
         padding: 50px;
     }
 
-    main > :is(section:nth-child(2), section:nth-child(3)) h2 {
+    main > section:is(:nth-child(2), :nth-child(3)) h3 {
+        /*Ökar textstorlek för h3 som finns i sektionen som antingen är andra eller tredje barnet direkt inuti main*/
         font-size: 1.9em;
     }
 
@@ -614,12 +614,8 @@ a:active {
         width: 100%;
     }
 
-    form input[type="text"],
-    form input[type="email"],
-    form input[type="password"],
-    form input[type="tel"],
-    form input[list],
-    form select {
+    form input:is([type="text"], [type="email"], [type="password"], [type="tel"], [list]),
+    select {
         /*Ökar storlek och textstorlek för att det ska se bättre ut på större skärm*/
         width: 50%;
         height: 28px;
@@ -637,20 +633,23 @@ a:active {
 
     /*===== Artister =======*/
     #artist main {
+        /*Ändrar layouten på main till en tvåspaltlayout nu när det finns plats för det med en grid layout. Jag justerar elementen till start så att de visas på samma höjd längst upp i sina rutor. Med hjälp av grid-template-areas så kan jag nu deklarera att lokala naven ska ta upp en hel rad och text delen och informations delen ska dela på den andra raden.*/
         display: grid;
         align-items: start;
         grid-template-columns: 2fr 1fr;
-        grid-template-rows: min-content auto;
+        grid-template-rows: auto auto;
         grid-template-areas: 
             "local local"
-            "textt info";
+            "text info";
     }
 
     #artist main > section:nth-child(1) {
+        /*Deklarerar elementets grid area, alltså vart den ska placeras i grid.*/
         grid-area: local;
     }
 
     #artist main > section:nth-child(1) ul {
+        /*Visar den lokala navens ul som en flex i riktning rad nu när det finns plats på skärmen för det.*/
         display: flex;
         flex-direction: row;
         justify-content: center;
@@ -665,7 +664,7 @@ a:active {
     }
 
     #artist main > section:nth-child(3) {
-        grid-area: textt;
+        grid-area: text;
     }
 
     #artist main > section:nth-child(3) article {
@@ -699,6 +698,10 @@ a:active {
         text-align: left;
     }
 
+    main article h4 {
+        font-size: 1.5em;
+    }
+
     /*===== information.html ======*/
     #information main > section > section {
         flex-direction: row;
@@ -709,7 +712,7 @@ a:active {
         width: 90%;
     }
     
-    /*Justerar texten olika för de tre sektionerna*/
+    /*Justerar texten olika för de två sektionerna och ger den andra sektionen en bredd för att listan ska passa in bra.*/
     #information main > section > section > section:nth-child(1) p {
         text-align: left;
     }
@@ -761,11 +764,11 @@ a:active {
         height: 55px;
     }
 
-    /*Lägger en hover effekt på knappenm för att göra det mer responsivt till användaren*/
+    /*Lägger en hover effekt på knappenm för att göra det mer responsivt till användaren. Effekten är att knappen blir större, använder transition för att bestämma hur fort det ska ändras. Ease gör så att animationen börjar långsamt och sedan blir lite snabbare och sedan avslutar med långsammare.*/
     form button:hover {
+        transition: 0.4s ease;
         width: 23%;
         height: 55px;
-        transition: 0.4s ease;
     }
 
     table {
@@ -775,14 +778,16 @@ a:active {
 
     /*==== Artister =====*/
     #artist main {
+        /*Ändrar layouten till en trespaltig layout genom att ändra grid rows och grid columns och grid template areas*/
         grid-template-columns: auto auto auto;
         grid-template-rows: 1fr;
         grid-template-areas: 
-            "local textt info";
+            "local text info";
     }
 
     
     #artist main > section:nth-child(1) ul {
+        /*Listan ska vara enspaltig för att ta upp mindre plats horisontellt. Stretch används för att göra så att elementen tar upp all plats möjligt.*/
         flex-direction: column;
         align-items: stretch;
         height: auto;
