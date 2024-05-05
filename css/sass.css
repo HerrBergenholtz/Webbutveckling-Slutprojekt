@@ -1,0 +1,83 @@
+@charset "UTF-8";
+@font-face {
+  /*Deklarerar en font med font-face. Då jag endast kommer använda en font till h1 taggen så används endast en fil som innehåller den vanliga versionen av fonten. Fonten är av formatet TTF som jag valde att använda för att den stöds i även äldre webbläsare, den har inte lika bra prestandard som det mer moderna WOFF formatet men för det som jag använder fonten till så föredrar jag bredare stöd.*/
+  font-family: "playfairregular";
+  src: url(../font/PlayfairDisplay-Regular.ttf);
+  font-weight: 100;
+  font-style: normal;
+}
+body {
+  margin: 0;
+}
+
+.wrapper {
+  display: grid;
+}
+
+header {
+  display: flex;
+  padding: 5px;
+  padding-left: 20px;
+  align-items: center;
+  height: 85px;
+  background-color: #fff;
+}
+header h1 {
+  margin: 0;
+  font-size: 1.3em;
+  height: auto;
+  font-family: playfairregular;
+}
+header h1 a {
+  font-size: 1.4em;
+  color: inherit;
+}
+header nav {
+  display: flex;
+  align-items: center;
+}
+header nav ul {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 25px;
+  padding-inline-start: 30px;
+  list-style-type: none;
+  margin: 0;
+}
+header nav ul li a {
+  text-align: center;
+  display: inline-block;
+  height: 50px;
+  line-height: 2.6;
+  color: inherit;
+  font-size: 1.3em;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+main h2 {
+  text-align: center;
+}
+main #game {
+  display: block;
+  width: 80vw;
+  height: 70vh;
+  background-color: #f3f3f3;
+  position: relative;
+}
+main #game img {
+  z-index: 1;
+  position: absolute;
+}
+
+footer {
+  height: -moz-min-content;
+  height: min-content;
+}
+footer p {
+  text-align: center;
+}/*# sourceMappingURL=sass.css.map */

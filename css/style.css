@@ -31,7 +31,11 @@ h1 {
 }
 
 header {
-    /*Sätter färg och statisk höjd på header*/
+    /*Sätter färg och statisk höjd på header samt som att jag visar den som flex och justerar föremålen till center.*/
+    display: flex;
+    padding: 5px;
+    gap: 5px;
+    align-items: center;
     height: 60px;
     background-color: #fff;
 }
@@ -40,8 +44,6 @@ header nav {
     /*Visar navbaren som flex och justerar innehållet till center för att göra så att ul listan har lagom med plats ovan och under. Sätter även bredd och höjd till 100% för att göra så att elementet tar upp hela headerns plats vilket gör att den ligger centrerad och prydligt.*/
     display: flex;
     align-items: center;
-    width: 100%;
-    height: 100%;
 }
 
 header nav ul {
@@ -60,7 +62,7 @@ header nav ul li a {
     text-align: center;
     display: inline-block;
     height: 40px;
-    line-height: 1.8;
+    line-height: 2.5;
 }
 
 /*======= Main =======*/
@@ -69,7 +71,7 @@ main > section:nth-child(1) {
     /*Ger main en bakgrundsbild som är positionerad mitt i sektionen och täcker hela sektionen utan att repetera, bestämmer även höjden och visar sektionen som flex och rättfärdigar innehållet till mitten av sektionen*/
     display: flex;
     justify-content: center;
-    background-image: url(../src/the-rat-pack-2.jpg);
+    background-image: url(../src/the-rat-pack-mobil.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -555,19 +557,27 @@ a:active {
 
 @media screen and (min-width:700px) {
     /*Regler som kommer gälla för större plattor*/
+
+    /*Gör länkarna och headern större*/
     header {
-        height: 80px;
+        height: 85px;
+        padding-left: 20px;
+        gap: 0;
+    }
+
+    header h1 a {
+        font-size: 1.4em;
     }
 
     header nav ul li a {
         font-size: 1.3em;
-        line-height: 2;
+        line-height: 2.6;
         height: 50px;        
     }
 
     main > section:nth-child(1) {
         /*Byter bakgrundsbilden till en som är mer anpassad för den större skärmstorleken*/
-        background-image: url(../src/the-rat-pack-4.jpg);
+        background-image: url(../src/the-rat-pack-padda.jpg);
         background-position: center;
     }
 
@@ -681,7 +691,7 @@ a:active {
 
     main > section:nth-child(1) {
         /*Byter ännu igen bakgrundsbilden till en som är mer anpassad för skärmstorleken och ökar höjden på sektionen*/
-        background-image: url(../src/the-rat-pack-2.jpg);
+        background-image: url(../src/the-rat-pack-dator.jpg);
         background-position: 0 -80px;
         height: 80vh;
     }
