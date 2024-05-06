@@ -1,58 +1,111 @@
 let gameElem;
 let shipElem;
 let shipDir = 0;
-let step = 0;
 const timerStep = 50;
 var timerRef = null;
 var timerRef2 = null;
-
 const shipArr = [
     starter = {
         health: 100,
         src: "../src/space-ship.png",
+        shipSpeed: 15,
         width: 70,
         weapon: {
             projectile: "../src/proj-single.gif",
             explosion: "../src/green-explosion.gif",
             fire: "single",
-            speed: 50,
+            speed: 10,
             width: 35
         }
     }
 ];
 
-class Player {
+class Sprite {
     constructor(
-        ship
+        sprite
     ) {
-        this.shipSrc = ship.src;
-        this.health = ship.health;
-        this.weapon = ship.weapon;
+        this.spriteSrc = sprite.src;
+        this.health = sprite.health;
+        this.weapon = sprite.weapon;
         this.x = 0;
         this.y = 0;
-        this.width = ship.width;
-        this.ship;
+        this.width = sprite.width;
+        this.speed = 0;
+        this.maxSpeed = sprite.shipSpeed;
+        this.sprite;
         this.projectile;
+        this.hitBoundary;
     }
 
     spawn() {
-        this.ship = document.createElement("img");
-        this.ship.src = this.shipSrc;
-        this.ship.style.width = this.width + "px";
-        gameElem.appendChild(this.ship);
+        this.sprite = document.createElement("img");
+        this.sprite.src = this.spriteSrc;
+        this.sprite.style.width = this.width + "px";
+        gameElem.appendChild(this.sprite);
 
-        this.ship.style.left = this.x + "px";
-        this.ship.style.top = this.y + "px";
-        this.ship.style.transition = "0.3s ease-out";
+        this.sprite.style.left = this.x + "px";
+        this.sprite.style.top = this.y + "px";
+        this.sprite.style.transition = "0.2s ease-out";
     }
 
     rotate(deg) {
-        this.ship.style.transform = "rotate(" + deg + "deg)";
+        let currentRotation = parseInt((this.sprite.style.transform.match(/rotate\(([^)]+)\)/) || [])[1]) || 0;
+        let newRotation = deg;
+
+        newRotation = (newRotation % 360 + 360) % 360;
+
+        let rotationDiff = newRotation - currentRotation;
+
+        rotationDiff = (rotationDiff + 180) % 360 - 180;
+
+        if (rotationDiff > 180) {
+            rotationDiff -= 360;
+        } else if (rotationDiff <= -180) {
+            rotationDiff += 360;
+        }
+
+        let finalRotation = currentRotation + rotationDiff;
+
+        this.sprite.style.transform = "rotate(" + finalRotation + "deg)";
     }
 
     move() {
-        this.ship.style.left = this.x + "px";
-        this.ship.style.top = this.y + "px";
+        const animate = () => {
+            let xLimit = gameElem.offsetWidth - this.width;
+            let yLimit = gameElem.offsetHeight - this.width;
+            let x = parseInt(shipElem.x);
+            let y = parseInt(shipElem.y);
+            console.log(y, this.y, shipElem.y)
+
+            switch (shipDir) {
+                case 0: //Upp  
+                    y -= this.speed;
+                    if (y < 0) y = 0;
+                    break;
+                case 1: //Höger
+                    x += this.speed;
+                    if (x > xLimit) x = xLimit;
+                    break;
+                case 2: //Ned
+                    y += this.speed;
+                    if (y > yLimit) y = yLimit;
+                    break;
+                case 3: //Vänster
+                    x -= this.speed;
+                    if (x < 0) x = 0;
+                    break;
+            };
+
+            shipElem.x = x;
+            shipElem.y = y;
+
+            this.sprite.style.left = this.x + "px";
+            this.sprite.style.top = this.y + "px";
+
+            requestAnimationFrame(animate);
+        }
+
+        animate()
     }
 
     fire() {
@@ -67,12 +120,19 @@ class Player {
     }
 }
 
+class Player extends Sprite {
+    constructor (sprite) {
+        super (Player)
+    }
+}
+
 class Projectile {
     constructor(
         weapon,
         x,
         y
     ) {
+
         this.projectileSrc = weapon.projectile;
         this.explosionSrc = weapon.explosion;
         this.type = weapon.fire;
@@ -80,8 +140,9 @@ class Projectile {
         this.width = weapon.width;
         this.projectile;
         this.x = x + 15;
-        this.y = y + 13;
+        this.y = y + 15;
         this.projectileDirection;
+        this.hitBoundary;
     }
 
     fire() {
@@ -97,7 +158,7 @@ class Projectile {
             case 1:
                 this.projectile.style.transform = "rotate(180deg)";
                 break;
-            case 2: 
+            case 2:
                 this.projectile.style.transform = "rotate(270deg)";
                 break;
             case 3:
@@ -112,52 +173,57 @@ class Projectile {
     }
 
     travel() {
-        switch (this.projectileDirection) {
-            case 0: //Upp  
-            this.y -= this.speed;
-            break;
-            case 1: //Höger
-            this.x += this.speed;
-            break;
-            case 2: //Ned
-            this.y += this.speed;
-            break;
-            case 3: //Vänster
-            this.x -= this.speed;
-            break;
-        }
+        const animate = () => {
+            switch (this.projectileDirection) {
+                case 0: //Upp  
+                    this.y -= this.speed;
+                    break;
+                case 1: //Höger
+                    this.x += this.speed;
+                    break;
+                case 2: //Ned
+                    this.y += this.speed;
+                    break;
+                case 3: //Vänster
+                    this.x -= this.speed;
+                    break;
+            }
 
-        this.projectile.style.left = this.x + "px";
-        this.projectile.style.top = this.y + "px";
-        this.checkHit();
-        setTimeout(() => this.travel(), timerStep);
+            this.projectile.style.left = this.x + "px";
+            this.projectile.style.top = this.y + "px";
+            this.checkHit(this);
+            
+            if (this.hitBoundary) {
+                console.log("hit");
+                this.explode();
+            } else {
+                requestAnimationFrame(animate);
+            }
+        };
+
+        animate();
     }
 
-    checkHit() {
+    checkHit(elem) {
+        console.log("checkhit");
         const boundaries = [
-            { condition: this.y < 45, adjustment: () => { this.y = 45; } },
-            { condition: this.x > gameElem.offsetWidth - 80, adjustment: () => { this.x = gameElem.offsetWidth - 80; } },
-            { condition: this.y > gameElem.offsetHeight - 80, adjustment: () => { this.y = gameElem.offsetHeight - 80; } },
-            { condition: this.x < 45, adjustment: () => { this.x = 45; } }
+            { condition: elem.y < 0, adjustment: () => { elem.y = 0; } },
+            { condition: elem.x > gameElem.offsetWidth - elem.width, adjustment: () => { elem.x = gameElem.offsetWidth - elem.width; } },
+            { condition: elem.y > gameElem.offsetHeight - elem.width, adjustment: () => { elem.y = gameElem.offsetHeight - elem.width; } },
+            { condition: elem.x < 0, adjustment: () => { elem.x = 0; } }
         ];
-        let hit = false;
-    
+
         boundaries.forEach(boundary => {
             if (boundary.condition) {
                 boundary.adjustment();
-                hit = true;
+                elem.hitBoundary = true;
             }
         });
-    
-        if (hit) {
-            this.explode()
-            return;
-        }
     }
 
     explode() {
-        this.projectile.style.display = "none"
-        let explosion = document.createElement("img")
+        this.projectile.style.display = "none";
+        let explosion = document.createElement("img");
 
         explosion.src = this.explosionSrc;
         explosion.style.width = this.projectile.style.width;
@@ -166,18 +232,24 @@ class Projectile {
         explosion.style.transform = this.projectile.style.transform;
 
         gameElem.appendChild(explosion);
+        console.log("expl");
 
         setTimeout(() => {
+            console.log("expl dis")
             explosion.style.display = "none";
+            explosion.remove();
+            this.projectile.remove();
         }, 300);
-
-        delete this.projectile, this;
     }
+}
+
+class Enemy {
+
 }
 
 function init() {
     gameElem = document.getElementById("game");
-    shipElem = new Player(shipArr[0]);
+    shipElem = new Sprite(shipArr[0]);
     shipElem.spawn();
 
     startGame();
@@ -186,7 +258,7 @@ function init() {
 window.onload = init;
 
 function startGame() {
-    moveShip();
+    shipElem.move();
 }
 
 function checkKey(e) {
@@ -194,10 +266,10 @@ function checkKey(e) {
 
     switch (k) {
         case 16: //Shift
-            if (step < 40) step += 10;
+            if (shipElem.speed < shipElem.maxSpeed) shipElem.speed += 5;
             break;
         case 17: //Ctrl
-            if (step > 0) step -= 10;
+            if (shipElem.speed > 0) shipElem.speed -= 5;
             break;
         case 32: //Blanksteg
             shipElem.fire();
@@ -219,37 +291,6 @@ function checkKey(e) {
             shipDir = 2;
             break;
     }
-}
-
-function moveShip() {
-    let xLimit = gameElem.offsetWidth - shipElem.width; 
-    let yLimit = gameElem.offsetHeight - shipElem.width;
-    let x = parseInt(shipElem.x);
-    let y = parseInt(shipElem.y);
-
-    switch (shipDir) {
-        case 0: //Upp  
-            y -= step;
-            if (y < 0) y = 0;
-            break;
-        case 1: //Höger
-            x += step;
-            if (x > xLimit) x = xLimit;
-            break;
-        case 2: //Ned
-            y += step;
-            if (y > yLimit) y = yLimit;
-            break;
-        case 3: //Vänster
-            x -= step;
-            if (x < 0) x = 0;
-            break;
-    }
-
-    shipElem.x = x;
-    shipElem.y = y;
-    shipElem.move();
-    setTimeout(moveShip, timerStep);
 }
 
 function elementsOverlap(el1, el2) {
