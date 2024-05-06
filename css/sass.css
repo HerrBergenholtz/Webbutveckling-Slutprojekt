@@ -12,6 +12,9 @@ body {
 
 .wrapper {
   display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: min-content 1fr min-content;
+  height: 100vh;
 }
 
 header {
@@ -64,8 +67,8 @@ main h2 {
 }
 main #game {
   display: block;
-  width: 80vw;
-  height: 65vh;
+  width: 95vw;
+  height: 100%;
   background-color: #f3f3f3;
   position: relative;
 }

@@ -1,6 +1,5 @@
 let gameElem;
 let shipElem;
-let shipDir = 0;
 const timerStep = 50;
 var timerRef = null;
 var timerRef2 = null;
@@ -14,7 +13,7 @@ const shipArr = [
             projectile: "../src/proj-single.gif",
             explosion: "../src/green-explosion.gif",
             fire: "single",
-            speed: 10,
+            speed: 6,
             width: 35
         }
     }
@@ -25,18 +24,15 @@ class Sprite {
         sprite
     ) {
         this.spriteSrc = sprite.src;
-        this.health = sprite.health;
-        this.weapon = sprite.weapon;
         this.x = 0;
         this.y = 0;
         this.width = sprite.width;
         this.speed = 0;
-        this.maxSpeed = sprite.shipSpeed;
+        this.spriteOriginal = sprite;
         this.sprite;
-        this.projectile;
         this.hitBoundary;
     }
-
+    
     spawn() {
         this.sprite = document.createElement("img");
         this.sprite.src = this.spriteSrc;
@@ -69,112 +65,9 @@ class Sprite {
         this.sprite.style.transform = "rotate(" + finalRotation + "deg)";
     }
 
-    move() {
+    move(explode) {
         const animate = () => {
-            let xLimit = gameElem.offsetWidth - this.width;
-            let yLimit = gameElem.offsetHeight - this.width;
-            let x = parseInt(shipElem.x);
-            let y = parseInt(shipElem.y);
-            console.log(y, this.y, shipElem.y)
-
-            switch (shipDir) {
-                case 0: //Upp  
-                    y -= this.speed;
-                    if (y < 0) y = 0;
-                    break;
-                case 1: //Höger
-                    x += this.speed;
-                    if (x > xLimit) x = xLimit;
-                    break;
-                case 2: //Ned
-                    y += this.speed;
-                    if (y > yLimit) y = yLimit;
-                    break;
-                case 3: //Vänster
-                    x -= this.speed;
-                    if (x < 0) x = 0;
-                    break;
-            };
-
-            shipElem.x = x;
-            shipElem.y = y;
-
-            this.sprite.style.left = this.x + "px";
-            this.sprite.style.top = this.y + "px";
-
-            requestAnimationFrame(animate);
-        }
-
-        animate()
-    }
-
-    fire() {
-        this.projectile = new Projectile(this.weapon, this.x, this.y);
-        this.projectile.fire();
-        this.travel();
-    }
-
-    travel() {
-        this.projectile.projectileDirection = shipDir;
-        this.projectile.travel();
-    }
-}
-
-class Player extends Sprite {
-    constructor (sprite) {
-        super (Player)
-    }
-}
-
-class Projectile {
-    constructor(
-        weapon,
-        x,
-        y
-    ) {
-
-        this.projectileSrc = weapon.projectile;
-        this.explosionSrc = weapon.explosion;
-        this.type = weapon.fire;
-        this.speed = weapon.speed;
-        this.width = weapon.width;
-        this.projectile;
-        this.x = x + 15;
-        this.y = y + 15;
-        this.projectileDirection;
-        this.hitBoundary;
-    }
-
-    fire() {
-        this.projectile = document.createElement("img");
-        this.projectile.src = this.projectileSrc;
-        this.projectile.style.width = this.width + "px";
-        this.projectile.style.transition = "0.2s linear"
-
-        switch (shipDir) {
-            case 0:
-                this.projectile.style.transform = "rotate(90deg)";
-                break;
-            case 1:
-                this.projectile.style.transform = "rotate(180deg)";
-                break;
-            case 2:
-                this.projectile.style.transform = "rotate(270deg)";
-                break;
-            case 3:
-                this.projectile.style.transform = "rotate(360deg)";
-                break;
-        }
-
-        this.projectile.style.left = this.x + "px";
-        this.projectile.style.top = this.y + "px";
-        this.projectile.style.zIndex = "0";
-        gameElem.appendChild(this.projectile);
-    }
-
-    travel() {
-        const animate = () => {
-            switch (this.projectileDirection) {
+            switch (this.direction) {
                 case 0: //Upp  
                     this.y -= this.speed;
                     break;
@@ -187,59 +80,131 @@ class Projectile {
                 case 3: //Vänster
                     this.x -= this.speed;
                     break;
-            }
+            };
 
-            this.projectile.style.left = this.x + "px";
-            this.projectile.style.top = this.y + "px";
+            this.sprite.style.left = this.x + "px";
+            this.sprite.style.top = this.y + "px";
             this.checkHit(this);
-            
-            if (this.hitBoundary) {
-                console.log("hit");
+
+            if (explode && this.hitBoundary) {
                 this.explode();
             } else {
                 requestAnimationFrame(animate);
             }
-        };
+        }
 
-        animate();
+        animate()
     }
 
-    checkHit(elem) {
-        console.log("checkhit");
+    checkHit() {
         const boundaries = [
-            { condition: elem.y < 0, adjustment: () => { elem.y = 0; } },
-            { condition: elem.x > gameElem.offsetWidth - elem.width, adjustment: () => { elem.x = gameElem.offsetWidth - elem.width; } },
-            { condition: elem.y > gameElem.offsetHeight - elem.width, adjustment: () => { elem.y = gameElem.offsetHeight - elem.width; } },
-            { condition: elem.x < 0, adjustment: () => { elem.x = 0; } }
+            { condition: this.y < 0, adjustment: () => { this.y = 0; } },
+            { condition: this.x > gameElem.offsetWidth - this.width, adjustment: () => { this.x = gameElem.offsetWidth - this.width; } },
+            { condition: this.y > gameElem.offsetHeight - this.width, adjustment: () => { this.y = gameElem.offsetHeight - this.width; } },
+            { condition: this.x < 0, adjustment: () => { this.x = 0; } }
         ];
 
         boundaries.forEach(boundary => {
             if (boundary.condition) {
                 boundary.adjustment();
-                elem.hitBoundary = true;
+                this.hitBoundary = true;
             }
         });
-    }
+    } 
 
     explode() {
-        this.projectile.style.display = "none";
         let explosion = document.createElement("img");
 
-        explosion.src = this.explosionSrc;
-        explosion.style.width = this.projectile.style.width;
-        explosion.style.left = this.projectile.style.left;
-        explosion.style.top = this.projectile.style.top;
-        explosion.style.transform = this.projectile.style.transform;
-
-        gameElem.appendChild(explosion);
-        console.log("expl");
+        setTimeout(() => {
+            this.sprite.style.display = "none";
+    
+            explosion.src = this.explosionSrc;
+            explosion.style.width = this.sprite.style.width;
+            explosion.style.left = this.sprite.style.left;
+            explosion.style.top = this.sprite.style.top;
+            explosion.style.transform = this.sprite.style.transform;
+    
+            gameElem.appendChild(explosion);
+            
+        }, 150);
 
         setTimeout(() => {
-            console.log("expl dis")
             explosion.style.display = "none";
             explosion.remove();
-            this.projectile.remove();
-        }, 300);
+            this.sprite.remove();
+        }, 400);
+    }
+}
+
+class Ship extends Sprite {
+    constructor (sprite) {
+        super(sprite);
+        this.health = sprite.health;
+        this.maxSpeed = sprite.shipSpeed;
+        this.weapon = sprite.weapon;
+        this.sprite = sprite;
+        this.direction = 0;
+        this.projectile;
+    }
+
+    fly() {
+        super.move(false);
+    }
+    
+    fire() {
+        this.projectile = new Projectile(this.spriteOriginal, this.x, this.y, this.direction);
+        this.projectile.fire();
+    }
+}
+
+class Projectile extends Ship {
+    constructor(
+        sprite,
+        x,
+        y,
+        dir
+    ) {
+        super(sprite);
+        
+        this.spriteSrc = sprite.weapon.projectile;
+        this.explosionSrc = sprite.weapon.explosion;
+        this.type = sprite.weapon.fire;
+        this.speed = sprite.weapon.speed;
+        this.width = sprite.weapon.width;
+        this.x = x + 15;
+        this.y = y + 15;
+        this.sprite;
+        this.hitBoundary;
+        this.direction = dir;
+    }
+
+    fire() {
+        super.spawn();
+        this.sprite.style.transition = "0.2s linear"
+
+        switch (this.direction) {
+            case 0:
+                this.sprite.style.transform = "rotate(90deg)";
+                break;
+            case 1:
+                this.sprite.style.transform = "rotate(180deg)";
+                break;
+            case 2:
+                this.sprite.style.transform = "rotate(270deg)";
+                break;
+            case 3:
+                this.sprite.style.transform = "rotate(360deg)";
+                break;
+        }
+
+        this.sprite.style.zIndex = "0";
+        gameElem.appendChild(this.sprite);
+
+        this.travel();
+    }
+
+    travel() {
+        super.move(true);
     }
 }
 
@@ -249,7 +214,7 @@ class Enemy {
 
 function init() {
     gameElem = document.getElementById("game");
-    shipElem = new Sprite(shipArr[0]);
+    shipElem = new Ship(shipArr[0]);
     shipElem.spawn();
 
     startGame();
@@ -258,7 +223,7 @@ function init() {
 window.onload = init;
 
 function startGame() {
-    shipElem.move();
+    shipElem.fly();
 }
 
 function checkKey(e) {
@@ -266,29 +231,29 @@ function checkKey(e) {
 
     switch (k) {
         case 16: //Shift
-            if (shipElem.speed < shipElem.maxSpeed) shipElem.speed += 5;
+            if (shipElem.speed < shipElem.maxSpeed) shipElem.speed += 2;
             break;
         case 17: //Ctrl
-            if (shipElem.speed > 0) shipElem.speed -= 5;
+            if (shipElem.speed > 0) shipElem.speed -= 2;
             break;
         case 32: //Blanksteg
             shipElem.fire();
             break;
         case 37://Vänster
             shipElem.rotate(270);
-            shipDir = 3;
+            shipElem.direction = 3;
             break;
         case 38://Upp
             shipElem.rotate(360);
-            shipDir = 0;
+            shipElem.direction = 0;
             break;
         case 39://Höger
             shipElem.rotate(90);
-            shipDir = 1;
+            shipElem.direction = 1;
             break;
         case 40://Ner
             shipElem.rotate(180);
-            shipDir = 2;
+            shipElem.direction = 2;
             break;
     }
 }
