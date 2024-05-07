@@ -3,19 +3,48 @@ let shipElem;
 const timerStep = 50;
 var timerRef = null;
 var timerRef2 = null;
+
+const spriteArr = [
+    enviroments = {
+        space1: "../src/space-background.jpg",
+        space2: "../src/space-background-2.png"
+    }
+];
 const shipArr = [
     starter = {
         health: 100,
         src: "../src/space-ship.png",
-        shipSpeed: 15,
+        shipSpeed: 6,
         width: 70,
         weapon: {
             projectile: "../src/proj-single.gif",
             explosion: "../src/green-explosion.gif",
-            fire: "single",
-            speed: 6,
-            width: 35
+            explosionWidth: 35,
+            speed: 10,
+            cooldown: 300,
+            width: 35,
+            offset: -20
         }
+    },
+
+    nomad = {
+        health: 130,
+        src: "../src/space-ship-2.png",
+        shipSpeed: 4,
+        width: 50,
+        weapon: {
+            projectile: "../src/proj-fireball.gif",
+            explosion: "../src/explosion.gif",
+            explosionWidth: 100,
+            speed: 5,
+            cooldown: 1000,
+            width: 60,
+            offset: 5
+        }
+    },
+
+    standardEnemy = {
+
     }
 ];
 
@@ -24,8 +53,8 @@ class Sprite {
         sprite
     ) {
         this.spriteSrc = sprite.src;
-        this.x = 0;
-        this.y = 0;
+        this.x = 600;
+        this.y = 400;
         this.width = sprite.width;
         this.speed = 0;
         this.spriteOriginal = sprite;
@@ -42,6 +71,10 @@ class Sprite {
         this.sprite.style.left = this.x + "px";
         this.sprite.style.top = this.y + "px";
         this.sprite.style.transition = "0.2s ease-out";
+    }
+
+    background() {
+        gameElem.style.backgroundImage = "url(" + this.spriteSrc + ")";
     }
 
     rotate(deg) {
@@ -106,7 +139,7 @@ class Sprite {
 
         boundaries.forEach(boundary => {
             if (boundary.condition) {
-                boundary.adjustment();
+                setTimeout(boundary.adjustment(),100);
                 this.hitBoundary = true;
             }
         });
@@ -115,18 +148,17 @@ class Sprite {
     explode() {
         let explosion = document.createElement("img");
 
-        setTimeout(() => {
-            this.sprite.style.display = "none";
-    
-            explosion.src = this.explosionSrc;
-            explosion.style.width = this.sprite.style.width;
-            explosion.style.left = this.sprite.style.left;
-            explosion.style.top = this.sprite.style.top;
-            explosion.style.transform = this.sprite.style.transform;
-    
-            gameElem.appendChild(explosion);
+        this.sprite.style.display = "none";
+
+        explosion.src = this.explosionSrc;
+        explosion.style.width = this.explosionWidth + "px";
+        explosion.style.left = this.sprite.style.left;
+        explosion.style.top = this.sprite.style.top;
+        explosion.style.transform = this.sprite.style.transform;
+
+        gameElem.appendChild(explosion);
             
-        }, 150);
+
 
         setTimeout(() => {
             explosion.style.display = "none";
@@ -141,20 +173,38 @@ class Ship extends Sprite {
         super(sprite);
         this.health = sprite.health;
         this.maxSpeed = sprite.shipSpeed;
+        this.cooldown = sprite.weapon.cooldown
         this.weapon = sprite.weapon;
         this.sprite = sprite;
         this.direction = 0;
+        this.shooting = false;
         this.projectile;
     }
 
     fly() {
         super.move(false);
     }
-    
+
     fire() {
-        this.projectile = new Projectile(this.spriteOriginal, this.x, this.y, this.direction);
-        this.projectile.fire();
+        this.shooting = !this.shooting;
+        console.log("fire");
+    
+        const loop = () => {
+            this.projectile = new Projectile(this.spriteOriginal, this.x, this.y, this.direction);
+            this.projectile.fire();
+    
+            setTimeout(() => {
+                if (this.shooting) {
+                    loop();
+                }
+            }, this.cooldown);
+        };
+
+        if (this.shooting) {
+            loop();
+        }
     }
+    
 }
 
 class Projectile extends Ship {
@@ -171,16 +221,19 @@ class Projectile extends Ship {
         this.type = sprite.weapon.fire;
         this.speed = sprite.weapon.speed;
         this.width = sprite.weapon.width;
-        this.x = x + 15;
-        this.y = y + 15;
+        this.explosionWidth = sprite.weapon.explosionWidth;
+        this.offset = sprite.weapon.offset;
+        this.x = x - this.offset;
+        this.y = y - this.offset;
         this.sprite;
         this.hitBoundary;
         this.direction = dir;
     }
 
     fire() {
-        super.spawn();
-        this.sprite.style.transition = "0.2s linear"
+        console.log(this.offset, this.y)
+        this.spawn();
+        this.sprite.style.transition = "none";
 
         switch (this.direction) {
             case 0:
@@ -214,16 +267,57 @@ class Enemy {
 
 function init() {
     gameElem = document.getElementById("game");
-    shipElem = new Ship(shipArr[0]);
-    shipElem.spawn();
-
+    shipElem = new Ship(shipArr[1]);
+    
     startGame();
     document.addEventListener("keydown", checkKey);
 }
 window.onload = init;
 
 function startGame() {
+    gameElem.style.background = "url(" +  spriteArr[0].space2 + ") no-repeat center";
+    gameElem.style.backgroundSize = "cover";
+    shipElem.spawn();
     shipElem.fly();
+    drawStats();
+}
+
+function drawStats() {
+    const draw = (elem, src, alt) => {
+        elem.src = src;
+        elem.alt = alt;
+        elem.style.width = "50px";
+        elem.style.height = "50px";
+    }
+
+    let statusElem = document.createElement("div");
+    statusElem.style.width = "100%";
+    statusElem.style.height = "50px";
+    statusElem.style.display = "flex";
+    statusElem.style.justifyContent = "space-between";
+
+    let healthElem = document.createElement("div");
+    let pointsElem = document.createElement("div");
+
+    let healthSprite = document.createElement("img");
+    let pointsSprite = document.createElement("img");
+
+    draw(healthSprite, "../src/pixel-heart.png", "Hälsa");
+    draw(pointsSprite, "../src/pixel-coin.png", "Poäng");
+
+    let healthCounter = document.createElement("span");
+    let pointsCounter = document.createElement("span");
+    
+    healthCounter.innerText = shipElem.health;
+
+    healthElem.appendChild(healthSprite);
+    healthElem.appendChild(healthCounter);
+    pointsElem.appendChild(pointsSprite);
+
+    statusElem.appendChild(healthElem);
+    statusElem.appendChild(pointsElem);
+
+    gameElem.appendChild(statusElem);
 }
 
 function checkKey(e) {
