@@ -1,11 +1,12 @@
 @font-face {
-    /*Deklarerar en font med font-face. Då jag endast kommer använda en font till h1 taggen så används endast en fil som innehåller den vanliga versionen av fonten. Fonten är av formatet TTF som jag valde att använda för att den stöds i även äldre webbläsare, den har inte lika bra prestandard som det mer moderna WOFF formatet men för det som jag använder fonten till så föredrar jag bredare stöd.*/  
+    /*Deklarerar en font med font-face. Då jag endast kommer använda en font till h1 taggen så används endast en fil som innehåller den vanliga versionen av fonten. Fonten är av formatet TTF som jag valde att använda för att den stöds i även äldre webbläsare, den har inte lika bra prestandard som det mer moderna WOFF formatet men för det som jag använder fonten till så föredrar jag bredare stöd.*/
     font-family: "playfairregular";
     src: url(../font/PlayfairDisplay-Regular.ttf);
-	font-weight: 100;
-	font-style: normal;
+    font-weight: 100;
+    font-style: normal;
 }
 
+/*======= Variabler =======*/
 :root {
     /*Root selektorn låter mig deklarera variabler. Jag deklarerar en variabel för det box shadow värde som alla element med box shadow använder för att undvika onödigt arbete*/
     --box-shadow: 3px 2px 10px #a2a2a2;
@@ -23,6 +24,7 @@ body {
     grid-template-columns: 1fr;
 }
 
+/*======= Header =======*/
 h1 {
     margin: 0;
     font-size: 1.3em;
@@ -67,7 +69,7 @@ header nav ul li a {
 
 /*======= Main =======*/
 /*======= Sektion 1 =======*/
-main > section:nth-child(1) {
+main>section:nth-child(1) {
     /*Ger main en bakgrundsbild som är positionerad mitt i sektionen och täcker hela sektionen utan att repetera, bestämmer även höjden och visar sektionen som flex och rättfärdigar innehållet till mitten av sektionen*/
     display: flex;
     justify-content: center;
@@ -78,7 +80,7 @@ main > section:nth-child(1) {
     height: 500px;
 }
 
-main > section:nth-child(1) h2 {
+main>section:nth-child(1) h2 {
     /*Ökar storlek och ändrar färg samt som jag lägger till en svart textskugga för att göra så att texten syns tydligt*/
     font-size: 3em;
     color: white;
@@ -86,7 +88,7 @@ main > section:nth-child(1) h2 {
 }
 
 /*======= Sektion 2 =======*/
-main > section:nth-child(2) {
+main>section:nth-child(2) {
     /*Visar innehållet som flex i riktningen kolumn för en enspaltig layout på mobil*/
     display: flex;
     flex-direction: column;
@@ -102,19 +104,18 @@ main iframe {
     margin: auto;
 }
 
-
-main > section:nth-child(2) :is(p, h3) {
+main>section:nth-child(2) :is(p, h3) {
     /*Centrerar och gör texten större på p element och h3 element som finns i en sektion som är det andra barnet direkt inuti main. Använder selektorn :is() för att simplifiera selektorn (istället för en gruppselektor)*/
     font-size: 1.3em;
     text-align: center;
 }
 
-main > section:nth-child(2) p::first-letter {
+main>section:nth-child(2) p::first-letter {
     /*Gör så att den första bokstaven i paragrafen har en textstorlek som är dubbelt så stor som föräldrar elementet med enheten Rem*/
     font-size: 2rem;
 }
 
-main > section:nth-child(2) section {
+main>section:nth-child(2) section {
     /*Centrerar innehållet i kolumn-riktninng med flex*/
     display: flex;
     flex-direction: column;
@@ -122,7 +123,7 @@ main > section:nth-child(2) section {
 }
 
 /*======= Sektion 3 =======*/
-main > section:nth-child(3) {
+main>section:nth-child(3) {
     /*Sätter bakgrundsfärgen till en gråaktig färg, lägger till padding, visar som flex med riktningen kolumn och justerar innehållet till center och lägger till ett gap för att separera elementen*/
     background-color: #ececec;
     padding: 20px;
@@ -132,7 +133,7 @@ main > section:nth-child(3) {
     gap: 30px;
 }
 
-main > section:nth-child(3) h3 {
+main>section:nth-child(3) h3 {
     /*Centrerar text, tar bort margin och ökar textstorleken med den relativa enheten Ch vilket är relativt till bredden på siffran "0"*/
     text-align: center;
     font-size: 3.5ch;
@@ -175,8 +176,8 @@ footer p {
 
 /*======= information.html ==========*/
 /*======= Punkter ========*/
-/*Id-selektorn #information avänds för att göra så att reglerna endast gäller för de element som finns i information.html*/ 
-#information main > section {
+/*Id-selektorn #information avänds för att göra så att reglerna endast gäller för de element som finns i information.html*/
+#information main>section {
     background-color: #c9c9c9;
 }
 
@@ -184,18 +185,18 @@ footer p {
     font-size: 1.8em;
 }
 
-#information main > section:nth-child(2) {
+#information main>section:nth-child(2) {
     /*Sätter bakgrundsbilden till en lineär gradient från vänster till höger från en ljusare grå färg till en mörkare grå färg*/
     background-image: linear-gradient(to right, #d7d7d7, #a8a5a5);
 }
 
-#information main > section > section {
+#information main>section>section {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-#information main > section > section > section {
+#information main>section>section>section {
     display: flex;
     flex-direction: column;
 }
@@ -206,7 +207,7 @@ footer p {
     margin: 0;
 }
 
-#information main > section > section > section:nth-child(2) {
+#information main>section>section>section:nth-child(2) {
     align-items: center;
 }
 
@@ -215,17 +216,17 @@ footer p {
 }
 
 /*======= Galleri =======*/
-#information main > section:nth-child(3) {
+#information main>section:nth-child(3) {
     border-radius: 0;
     background-color: #ffffff;
 }
 
-#information main > section:nth-child(3) section {
+#information main>section:nth-child(3) section {
     display: flex;
     align-items: center;
 }
 
-#information main > section:nth-child(3) figure {
+#information main>section:nth-child(3) figure {
     /*Stylar alla figurer lika*/
     width: 90%;
     padding: 10px;
@@ -233,28 +234,28 @@ footer p {
     margin: 0;
 }
 
-#information main > section:nth-child(3) figure {
+#information main>section:nth-child(3) figure {
     /*Roterar alla figurer -1 grad med enheten Deg (degrees)*/
     transform: rotate(-1deg);
 }
 
-#information main > section:nth-child(3) figure:not(:nth-child(2)) {
+#information main>section:nth-child(3) figure:not(:nth-child(2)) {
     /*Roterar alla figurer som inte är den andra figuren i sektionen med en grad vilket jag åstadkommer med :not() selektorn vilket väljer alla element som inte passar selektorn som ges. I detta fallet så räcker det att skriva :nth-child(2). Alltså så väljer selektorn alla figurer som inte är det andra barnet i sektionen.*/
     transform: rotate(1deg);
 }
 
-#information main > section:nth-child(3) figure figcaption {
+#information main>section:nth-child(3) figure figcaption {
     /*Ändrar textstorleken på figcaption till 2ex. Ex är en relatvi enhet som är relativ till höjden på lilla "x"*/
     font-size: 2ex;
 }
 
-#information main > section:nth-child(3) figure img {
+#information main>section:nth-child(3) figure img {
     /*Sätter bredden på bilderna i figurerna till 100% för att fylla figuren men inte mer.*/
     width: 100%;
 }
 
 /*======= form =======*/
-#information main > section:nth-child(4) {
+#information main>section:nth-child(4) {
     padding: 20px;
     background-color: #fff;
     display: flex;
@@ -274,7 +275,7 @@ form p {
     margin: 0;
 }
 
-form > fieldset {
+form>fieldset {
     /*Lägger till en padding och ändrar färgen med rgba samt som att jag lägger till en box shadow som ör mer tydlig på nedre och högra sidan vilket ger illusionen av djup.*/
     padding: 20px;
     background-color: rgba(197, 196, 196, 0.99);
@@ -296,7 +297,7 @@ select {
     background-color: hsla(0, 0%, 100%, 0.99);
 }
 
-form input:required { 
+form input:required {
     /*Väljer de inputs som har attributet required med den särskilda :required selektorn och ger de en lite annorlunda border-color.*/
     border-color: rgb(184, 186, 255);
 }
@@ -329,7 +330,7 @@ form select {
     width: 80%;
 }
 
-form > section:last-child {
+form>section:last-child {
     /*Sektionen som innehåller submit knappen som finns till för att centrera knappen*/
     display: flex;
     justify-content: center;
@@ -346,7 +347,7 @@ form button {
 }
 
 /*======Tabell======*/
-main > section:nth-child(5) {
+main>section:nth-child(5) {
     /*Tabeller är mycket svåra att mobilanpassa och den innehåller inte vissentlig information så därför så göms den på mindre skärmar*/
     display: none;
     flex-direction: column;
@@ -358,7 +359,7 @@ table {
     width: 90%;
 }
 
-table, 
+table,
 th,
 td {
     /*Ger tabellen en en pixel bred svart heldragen border och collapsar alla för att det ska se snygg och prydligt ut, lägger även till padding för att tabellen ska bli mer luftig och lättläslig*/
@@ -388,6 +389,7 @@ th[scope="row"] {
 tr:nth-child(odd) {
     background-color: #f3f3f3;
 }
+
 /*Lägger till zebra-striping till de vanliga cellerna*/
 tr:nth-child(even) {
     background-color: #dadada;
@@ -398,16 +400,16 @@ tfoot tr td {
     background-color: #979595;
 }
 
-/*====== artist.html ======*/
+/*====== Artister ======*/
 /*====== Menyknapp =======*/
-#artist main > section:nth-child(1) {
+#artist main>section:nth-child(1) {
     /*Jag tar bort bakgrundsbilden och sätter höjden till auto då detta är den enda layout som inte har bakgrundsbild och titel i sin första sektion*/
     width: 100%;
     height: auto;
     background-image: none;
 }
 
-#artist main > section:nth-child(1) ul {
+#artist main>section:nth-child(1) ul {
     /*Stylar bredd, list-stil, padding och margin, rundade hörn och bakgrundsfärg och box-shadow*/
     width: 90%;
     list-style-type: none;
@@ -418,11 +420,11 @@ tfoot tr td {
     margin: 0;
 }
 
-#artist main > section:nth-child(1) ul li {
+#artist main>section:nth-child(1) ul li {
     text-align: center;
 }
 
-#artist main > section:nth-child(1) ul li a {
+#artist main>section:nth-child(1) ul li a {
     /*Liknande styling till de länkar som finns i min header*/
     display: inline-block;
     height: 50px;
@@ -442,7 +444,7 @@ tfoot tr td {
     padding: 15px;
 }
 
-#artist main > section:nth-child(2) {
+#artist main>section:nth-child(2) {
     /*Visar sektionen med översiktig information som en enspaltig kolumn och lägger till border med rundade hörn och en box-shadow*/
     display: flex;
     flex-direction: column;
@@ -459,7 +461,7 @@ tfoot tr td {
     box-shadow: var(--box-shadow);
 }
 
-#artist main > section:nth-child(2) img {
+#artist main>section:nth-child(2) img {
     /*Ger bilden rundade hörn och relativ bredd*/
     width: 80%;
     border-radius: 5px;
@@ -488,7 +490,7 @@ dl dd {
 }
 
 /*====== Sektion 2 ======*/
-#artist main > section:nth-child(3) {
+#artist main>section:nth-child(3) {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -497,7 +499,7 @@ dl dd {
     border-radius: 15px;
 }
 
-#artist main > section:nth-child(3) article {
+#artist main>section:nth-child(3) article {
     border-style: solid;
     border-color: #5f5f5f;
     border-width: 1px;
@@ -507,7 +509,7 @@ dl dd {
     text-decoration: underline;
 }
 
-/*Min kära älskade LoVe Focus HAte som är prydligt skrivet längst ner bland de vanliga reglerna i rätt ordning, visst är det vackert*/
+/*Min älskade LoVe Focus HAte som är prydligt skrivet längst ner bland de vanliga reglerna i rätt ordning så att det inte ska spöka*/
 a:link {
     color: black;
 }
@@ -531,6 +533,7 @@ a:active {
 @media screen and (min-width: 450px) {
     /*Regler som gäller för mycket stora mobiler och mindre plattor*/
 
+    /*======= Header =======*/
     header nav ul {
         /*Lägger till ett gap och padding inline start nu när det finns plats för det */
         gap: 25px;
@@ -541,16 +544,17 @@ a:active {
         font-size: 1.1em;
     }
 
-    main > section:nth-child(1) {
+    /*======= Main =======*/
+    main>section:nth-child(1) {
         /*Ändrar positionen på bakgrundsbilden för att bättre passa till den större skärmstorleken*/
         background-position: top;
     }
-    
+
     main iframe {
         width: 80vw;
     }
-    
-    main article{
+
+    main article {
         width: 75vw;
     }
 }
@@ -558,6 +562,7 @@ a:active {
 @media screen and (min-width:700px) {
     /*Regler som kommer gälla för större plattor*/
 
+    /*======= Header =======*/
     /*Gör länkarna och headern större*/
     header {
         height: 85px;
@@ -572,21 +577,22 @@ a:active {
     header nav ul li a {
         font-size: 1.3em;
         line-height: 2.6;
-        height: 50px;        
+        height: 50px;
     }
 
-    main > section:nth-child(1) {
+    /*======= index.html =======*/
+    main>section:nth-child(1) {
         /*Byter bakgrundsbilden till en som är mer anpassad för den större skärmstorleken*/
         background-image: url(../src/the-rat-pack-padda.jpg);
         background-position: center;
     }
 
-    main > section:nth-child(2) {
+    main>section:nth-child(2) {
         /*Lägger till extra padding nu när det finns plats för det då det får sidan att se lite mer lufitg ut*/
         padding: 50px;
     }
 
-    main > section:is(:nth-child(2), :nth-child(3)) h3 {
+    main>section:is(:nth-child(2), :nth-child(3)) h3 {
         /*Ökar textstorlek för h3 som finns i sektionen som antingen är andra eller tredje barnet direkt inuti main*/
         font-size: 1.9em;
     }
@@ -600,6 +606,7 @@ a:active {
     main article:nth-child(odd) {
         flex-direction: row-reverse;
     }
+
     /*Gör så att varannan artikel visas åt motsatt rad håll för att ge en mer intressant och livlig design*/
     main article:nth-child(even) {
         flex-direction: row;
@@ -615,11 +622,11 @@ a:active {
     }
 
     /*==== information.html ======*/
-    #information main > section:nth-child(3) section {
+    #information main>section:nth-child(3) section {
         flex-direction: row;
     }
 
-    #information main > section:nth-child(3) figure {
+    #information main>section:nth-child(3) figure {
         margin: 0;
         width: 100%;
     }
@@ -636,7 +643,7 @@ a:active {
         width: 20%;
     }
 
-    #information main > section:nth-child(5) {
+    #information main>section:nth-child(5) {
         /*Gör så att tabellens sektion visas som flex och därför syns*/
         display: flex;
     }
@@ -648,17 +655,17 @@ a:active {
         align-items: start;
         grid-template-columns: 2fr 1fr;
         grid-template-rows: auto auto;
-        grid-template-areas: 
+        grid-template-areas:
             "local local"
             "text info";
     }
 
-    #artist main > section:nth-child(1) {
+    #artist main>section:nth-child(1) {
         /*Deklarerar elementets grid area, alltså vart den ska placeras i grid.*/
         grid-area: local;
     }
 
-    #artist main > section:nth-child(1) ul {
+    #artist main>section:nth-child(1) ul {
         /*Visar den lokala navens ul som en flex i riktning rad nu när det finns plats på skärmen för det.*/
         display: flex;
         flex-direction: row;
@@ -668,42 +675,42 @@ a:active {
         height: 80px;
     }
 
-    #artist main > section:nth-child(2) {
+    #artist main>section:nth-child(2) {
         grid-area: info;
         border-style: none;
     }
 
-    #artist main > section:nth-child(3) {
+    #artist main>section:nth-child(3) {
         grid-area: text;
     }
 
-    #artist main > section:nth-child(3) article {
+    #artist main>section:nth-child(3) article {
         flex-direction: column;
         width: auto;
         border-style: none;
         gap: 20px;
     }
-
 }
 
 @media screen and (min-width: 1000px) {
     /*Regler som kommer börja gälla för datorskärmar*/
 
-    main > section:nth-child(1) {
+    /*======= index.html =======*/
+    main>section:nth-child(1) {
         /*Byter ännu igen bakgrundsbilden till en som är mer anpassad för skärmstorleken och ökar höjden på sektionen*/
         background-image: url(../src/the-rat-pack-dator.jpg);
         background-position: 0 -80px;
         height: 80vh;
     }
 
-    main > section:nth-child(2) section {
+    main>section:nth-child(2) section {
         /*Visar sektionen som en rad åt motsatt håll för att då hamnar texten till vänster om videon vilket känns mer naturligt då jag vill att man ska läsa texten först*/
         flex-direction: row-reverse;
         justify-content: center;
         gap: 30px;
     }
 
-    main > section:nth-child(2) section p {
+    main>section:nth-child(2) section p {
         width: 50%;
         text-align: left;
     }
@@ -713,35 +720,35 @@ a:active {
     }
 
     /*===== information.html ======*/
-    #information main > section > section {
+    #information main>section>section {
         flex-direction: row;
         gap: 10px;
     }
 
-    #information main > section > section > section p {
+    #information main>section>section>section p {
         width: 90%;
     }
-    
+
     /*Justerar texten olika för de två sektionerna och ger den andra sektionen en bredd för att listan ska passa in bra.*/
-    #information main > section > section > section:nth-child(1) p {
+    #information main>section>section>section:nth-child(1) p {
         text-align: left;
     }
-    
-    #information main > section > section > section:nth-child(2) {
+
+    #information main>section>section>section:nth-child(2) {
         width: 50vw;
     }
-    
-    #information main > section > section > section:nth-child(3) p {
+
+    #information main>section>section>section:nth-child(3) p {
         text-align: right;
     }
 
     /*===== form =====*/
-    #information main > section form {
+    #information main>section form {
         /*Skapar en grid layout med template area för att jag vill ha en mer avancerad design då fieldsetsen ska ligga jämte varandra*/
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-template-rows: auto auto auto auto;
-        grid-template-areas: 
+        grid-template-areas:
             "h3 h3"
             "p p"
             "field1 field2"
@@ -774,9 +781,12 @@ a:active {
         height: 55px;
     }
 
-    /*Lägger en hover effekt på knappenm för att göra det mer responsivt till användaren. Effekten är att knappen blir större, använder transition för att bestämma hur fort det ska ändras. Ease gör så att animationen börjar långsamt och sedan blir lite snabbare och sedan avslutar med långsammare.*/
-    form button:hover {
+    form button {
         transition: 0.4s ease;
+    }
+
+    /*Lägger en hover effekt på knappen för att göra det mer responsivt till användaren. Effekten är att knappen blir större, använder transition för att bestämma hur fort det ska ändras. Ease gör så att animationen börjar långsamt och sedan blir lite snabbare och sedan avslutar med långsammare.*/
+    form button:hover {
         width: 23%;
         height: 55px;
     }
@@ -785,18 +795,16 @@ a:active {
         /*Ökar storleken på tabellen*/
         width: 50%;
     }
-
-    /*==== Artister =====*/
+    /*====== Artister ======*/
     #artist main {
         /*Ändrar layouten till en trespaltig layout genom att ändra grid rows och grid columns och grid template areas*/
         grid-template-columns: auto auto auto;
         grid-template-rows: 1fr;
-        grid-template-areas: 
+        grid-template-areas:
             "local text info";
     }
 
-    
-    #artist main > section:nth-child(1) ul {
+    #artist main>section:nth-child(1) ul {
         /*Listan ska vara enspaltig för att ta upp mindre plats horisontellt. Stretch används för att göra så att elementen tar upp all plats möjligt.*/
         flex-direction: column;
         align-items: stretch;
@@ -805,24 +813,24 @@ a:active {
         gap: 0;
     }
 
-    #artist main > section:nth-child(1) ul li a {
+    #artist main>section:nth-child(1) ul li a {
         height: 70px;
         line-height: 3;
     }
 
-    #artist main > section:nth-child(2) {
+    #artist main>section:nth-child(2) {
         width: 20vw;
     }
 
-    #artist main > section:nth-child(3) {
+    #artist main>section:nth-child(3) {
         padding: 40px;
     }
 
-    #artist main > section:nth-child(3) article {
+    #artist main>section:nth-child(3) article {
         box-shadow: none;
     }
 
-    #artist main > section:nth-child(3) article :is(p, h2) {
+    #artist main>section:nth-child(3) article :is(p, h2) {
         text-align: left;
     }
 }

@@ -8,8 +8,8 @@ var timerRef2 = null;
 //JSON Array med olika sprites
 const spriteArr = [
     enviroments = {
-        space1: "../src/space-background.jpg",
-        space2: "../src/space-background-2.png"
+        space1: "../src/sprites/space-background.jpg",
+        space2: "../src/sprites/space-background-2.png"
     }
 ];
 
@@ -17,12 +17,12 @@ const spriteArr = [
 const shipArr = [
     starter = {
         health: 100,
-        src: "../src/space-ship.png",
+        src: "../src/sprites/space-ship.png",
         shipSpeed: 6,
         width: 70,
         weapon: {
-            projectile: "../src/proj-single.gif",
-            explosion: "../src/green-explosion.gif",
+            projectile: "../src/sprites/proj-single.gif",
+            explosion: "../src/sprites/green-explosion.gif",
             explosionWidth: 35,
             speed: 10,
             cooldown: 300,
@@ -33,12 +33,12 @@ const shipArr = [
 
     nomad = {
         health: 130,
-        src: "../src/space-ship-2.png",
+        src: "../src/sprites/space-ship-2.png",
         shipSpeed: 4,
         width: 50,
         weapon: {
-            projectile: "../src/proj-fireball.gif",
-            explosion: "../src/explosion.gif",
+            projectile: "../src/sprites/proj-fireball.gif",
+            explosion: "../src/sprites/explosion.gif",
             explosionWidth: 100,
             speed: 5,
             cooldown: 1000,
@@ -190,6 +190,7 @@ class Ship extends Sprite {
         this.cooldown = sprite.weapon.cooldown
         this.weapon = sprite.weapon;
         this.sprite = sprite;
+        this.points = 0;
         this.direction = 0;
         this.shooting = false;
         this.projectile;
@@ -286,7 +287,7 @@ class Enemy {
 
 function init() {
     gameElem = document.getElementById("game");
-    shipElem = new Ship(shipArr[1]);
+    shipElem = new Ship(shipArr[0]);
     
     startGame();
     document.addEventListener("keydown", checkKey);
@@ -321,17 +322,19 @@ function drawStats() {
     let healthSprite = document.createElement("img");
     let pointsSprite = document.createElement("img");
 
-    draw(healthSprite, "../src/pixel-heart.png", "Hälsa");
-    draw(pointsSprite, "../src/pixel-coin.png", "Poäng");
+    draw(healthSprite, "../src/sprites/pixel-heart.png", "Hälsa");
+    draw(pointsSprite, "../src/sprites/pixel-coin.png", "Poäng");
 
     let healthCounter = document.createElement("span");
     let pointsCounter = document.createElement("span");
     
     healthCounter.innerText = shipElem.health;
+    pointsCounter.innerText = shipElem.points;
 
     healthElem.appendChild(healthSprite);
     healthElem.appendChild(healthCounter);
     pointsElem.appendChild(pointsSprite);
+    pointsElem.appendChild(pointsCounter);
 
     statusElem.appendChild(healthElem);
     statusElem.appendChild(pointsElem);

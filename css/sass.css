@@ -76,13 +76,21 @@ main #game img {
   z-index: 1;
   position: absolute;
 }
-main #game div {
+main #game > div {
+  height: 50px;
   display: flex;
+  justify-content: space-between;
+  width: 100%;
   align-items: center;
-  font-size: 1.5em;
   color: #fff;
 }
-main #game div img {
+main #game > div div {
+  display: flex;
+  align-items: center;
+  font-size: 1.8em;
+  padding: 5px;
+}
+main #game > div img {
   position: relative;
   z-index: 0;
 }
