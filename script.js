@@ -1,15 +1,19 @@
+//Globala variabler
 let gameElem;
 let shipElem;
 const timerStep = 50;
 var timerRef = null;
 var timerRef2 = null;
 
+//JSON Array med olika sprites
 const spriteArr = [
     enviroments = {
         space1: "../src/space-background.jpg",
         space2: "../src/space-background-2.png"
     }
 ];
+
+//JSON array med de olika rymdskepp som finns, innehåller information som hälsa, källa för sprites, och storlek mm.
 const shipArr = [
     starter = {
         health: 100,
@@ -48,6 +52,7 @@ const shipArr = [
     }
 ];
 
+//En klass som innehåller funktioner för att skapa sprites, klassen har en konstruktor som tar ett JSON objekt som argument och sätter varieabler till olika värden i arrayen.
 class Sprite {
     constructor(
         sprite
@@ -61,7 +66,8 @@ class Sprite {
         this.sprite;
         this.hitBoundary;
     }
-    
+
+    //Spawn() används för att skapa en sprite och placera ut den på spel elementet
     spawn() {
         this.sprite = document.createElement("img");
         this.sprite.src = this.spriteSrc;
@@ -73,11 +79,9 @@ class Sprite {
         this.sprite.style.transition = "0.2s ease-out";
     }
 
-    background() {
-        gameElem.style.backgroundImage = "url(" + this.spriteSrc + ")";
-    }
-
+    //Rotate roterar spriten med så många grader som anges som argument 
     rotate(deg) {
+        //Regex uttryck som hämtar den nuvarande roatationen av en sprite genom att använda match på elementets transform värde med ett uttryck som hämtar det som står inuti rotate() och sedan väljer rätt värde.
         let currentRotation = parseInt((this.sprite.style.transform.match(/rotate\(([^)]+)\)/) || [])[1]) || 0;
         let newRotation = deg;
 
@@ -98,7 +102,9 @@ class Sprite {
         this.sprite.style.transform = "rotate(" + finalRotation + "deg)";
     }
 
+    //Flyttar på spriten åt det håll som anges i spritens riktningsvariabel. Funktionen tar också true eller false som argument för att avgöra vad som ska hända om spriten åker in i en vägg.
     move(explode) {
+        //Arrow funktion som ändrar på objektets x eller y värde beroende på riktning
         const animate = () => {
             switch (this.direction) {
                 case 0: //Upp  
@@ -115,10 +121,12 @@ class Sprite {
                     break;
             };
 
+            //Sätter objekets style left och right till x och y värdet för att flytta på objektet och kollar sedan kollisioner med checkHit
             this.sprite.style.left = this.x + "px";
             this.sprite.style.top = this.y + "px";
             this.checkHit(this);
 
+            //Om explode är sant och variabeln hitBoundary är sann så körs explode() på objektet, alltså som objektet ska explodera när den kolliderar med en vägg så gör den det annars så körs requestAnimationFrame med animation() som callback funktion.
             if (explode && this.hitBoundary) {
                 this.explode();
             } else {
@@ -126,10 +134,13 @@ class Sprite {
             }
         }
 
+        //Kallar animate igen för nästa steg av animationen
         animate()
     }
 
+    //CheckHit() kontrollerar om objektet har kolliderat med en vägg genom att undersöka en array med objekt som beskriver spelbärdans gränser och justeringar som görs om objektet är vid en grns.
     checkHit() {
+        //Varje objekt innehåller en condition som är en bool som blir sann om kriteriet inuti uppfylls och en arruwfunktion som är en justering som kommer köras om condition är sann. Adjustment() justerar objektets x eller y värde till att vara 0 eller spelelementets offset width eller height för att göra så att objektet inte flyger utanför spelbrädan
         const boundaries = [
             { condition: this.y < 0, adjustment: () => { this.y = 0; } },
             { condition: this.x > gameElem.offsetWidth - this.width, adjustment: () => { this.x = gameElem.offsetWidth - this.width; } },
@@ -137,14 +148,16 @@ class Sprite {
             { condition: this.x < 0, adjustment: () => { this.x = 0; } }
         ];
 
+        //Söker genom hela arrayen med en foreach arrow funktion, om objektets condition är sann så körs objektets adjustment() efter 0.1 sekunder för att göra så att elementet inte "snäpper" in i kanten utan stannar mjukare vid kanten och sedan sätts objektets hitboundary till sann vilket används för att kontrollera om elementet ska explodera.
         boundaries.forEach(boundary => {
             if (boundary.condition) {
                 setTimeout(boundary.adjustment(),100);
                 this.hitBoundary = true;
             }
         });
-    } 
+    }
 
+    //Explode() skapar en ny bild som har objektets explosionskälla som bildkälla samt korresponderande bredd och samma left och top värder som objektets x och y vilket kommer göra så att när projektilen träffar väggen så visas den inte längre med hjälp av display none och ersätts istället med explosionen
     explode() {
         let explosion = document.createElement("img");
 
@@ -157,9 +170,8 @@ class Sprite {
         explosion.style.transform = this.sprite.style.transform;
 
         gameElem.appendChild(explosion);
-            
 
-
+        //Efter 0.4 sekunder, när explosionens animation är färdig, så sätt dess display till none och jag använder remove() för att ta bort explosionen objektets sprite vilket tar bort båda bilder från dokumentet vilket sparar minne och ser till så att de inte ligger kvar i dokumentet och spökar.
         setTimeout(() => {
             explosion.style.display = "none";
             explosion.remove();
@@ -168,7 +180,9 @@ class Sprite {
     }
 }
 
+//Klassen Ship som sträcker sig från Sprite, det betyder att Ship är en påbyggning av Sprite vilket gör att ship har tillgång till alla funktioner som finns i sprite och den kommer sätta samma variabler som i sprite med hjälp av att kalla super() i konstruktorn. EFtersom att ship är en påbyggnad så har den tillgång till fler funktioner och varibler som är specifika till skepp som alla sprites inte behöver ha tillgång till. Detta är ett smidigt sätt att strukturera sina klasser då det gör så att man kan ha en huvudklass som har de funktioner som är mer standard som att skapa objektet och flytta objektet och sedan ha mindre klasser som innehåller mer specifika funktioner men som ändå kan ta del av de vanliga funktionerna.
 class Ship extends Sprite {
+    //Genom att kalla super med argumentet sprite så kallas konstruktorn i föräldrarklassen på det argumentet, det gör så att samma variabler som deklareras i sprite deklareras i ship, sedan så lägger jag till specifika variabler som hör till skeppet.
     constructor (sprite) {
         super(sprite);
         this.health = sprite.health;
@@ -181,15 +195,19 @@ class Ship extends Sprite {
         this.projectile;
     }
 
+    //Kallar move på objektet med super för att flytta det, vilket gör så att funktioner från föräldrarklassen kan köras. Kallas med argumentet false för att skeppet inte ska explodera när den flyger in i väggar.
     fly() {
         super.move(false);
     }
 
+    //Fire() gör så att man kan toggla om skeppet ska skjuta eller inte
     fire() {
+        //This.shooting är falskt från börjarn, när funktionen kallas så sätt det till true om det är falskt och falskt om det är true 
         this.shooting = !this.shooting;
-        console.log("fire");
     
+        //En arrowfunktion som är en loop som kallar sig självt rekursivt med en cooldown som sätts av skeppets cooldown värde om this.shooting är sant. 
         const loop = () => {
+            //Skapar ett nytt projektil objekt med argumenten, spiteOriginal, x och y och kallar sedan fire().
             this.projectile = new Projectile(this.spriteOriginal, this.x, this.y, this.direction);
             this.projectile.fire();
     
@@ -200,6 +218,7 @@ class Ship extends Sprite {
             }, this.cooldown);
         };
 
+        //Initierar loopen om shooting är sant.
         if (this.shooting) {
             loop();
         }
