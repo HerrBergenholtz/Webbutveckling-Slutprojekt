@@ -27,9 +27,61 @@
             </header>
 
             <main>
-                <h2>Spelet</h2>
-                <div id="game">
+                <h2>Orelaterat Spel</h2>
+                <p>Det här spelet är endast tillgängligt för datorer</p><!--Text som syns om skärmen är för liten.-->
+                <div id="game"><!--Div som fungerar som spelbrädan och också innehåller alla menyer.-->
+                    <div id="mainMenu"><!--Huvudmenyn som har knappar för att navigiera menyer.-->
+                        <button id="startGame">Spela</button>
+                        <button id="selectShip">Välj Skepp</button>
+                        <button id="settings">Inställningar</button>
+                    </div>
 
+                    <div id="statusBar"><!--Det element som innehåller elementet som visar spelarens hälsa-->
+                        <img src="../src/sprites/pixel-heart.png" alt="Hälsa">
+                        <span id="healthCounter"></span>
+                    </div>
+
+                    <div id="select"><!--I denna menyn så får man välja sitt rymdskepp-->
+                        <section>
+                            <img src="../src/sprites/space-ship.png" alt="Rymdskepp nummer 1">
+                            <article><!--Artikel som innehåller information om skeppen-->
+                                <h3>Spejaren</h3>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi itaque alias aspernatur reiciendis, optio vel, consequuntur in illum libero hic ipsam ullam magnam nemo architecto exercitationem. Esse doloremque cum odit.</p>
+                                <button id="ship1">Välj Skepp</button>
+                            </article>
+                        </section>
+
+                        <section>
+                            <img src="../src/sprites/space-ship-2.png" alt="Rymdskepp nummer 2">
+                            <article>
+                                <h3>Tunga Artilleriet</h3>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi itaque alias aspernatur reiciendis, optio vel, consequuntur in illum libero hic ipsam ullam magnam nemo architecto exercitationem. Esse doloremque cum odit.</p>
+                                <button id="ship2">Välj Skepp</button>
+                            </article>
+                        </section>
+                    </div>
+
+                    <div id="settingsMenu"><!--Innehåller knappar där man väljer svårighetsgrad och också en lista med instruktioner.-->
+                        <h3>Välj Svårighetsgrad</h3>
+
+                        <section>
+                            <button id="easy">Lätt</button>
+                            <button id="medium">Medel</button>
+                            <button id="hard">Svår</button>
+                        </section>
+
+                        <ul>
+                            <li>Använd piltangenterna för att styra ditt rymdskepp</li>
+                            <li>Accelerera och retardera med respektive shift och ctrl</li>
+                            <li>Skjut med blanksteg</li>
+                            <li>Lycka till!</li>
+                        </ul>
+                    </div>
+
+                    <div id="result"><!--Här kommer resultatet att visas-->
+                        <h3></h3>
+                        <button id="backToMain">Huvudmenyn</button>
+                    </div>
                 </div>
             </main>
 
