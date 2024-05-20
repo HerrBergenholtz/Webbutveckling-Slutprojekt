@@ -322,7 +322,8 @@ form input:disabled::after {
 form textarea {
     font-size: 1em;
     background-color: #f1f1f1;
-    width: 95%;
+    height: 100px;
+    width: 90%;
 }
 
 form select {
@@ -473,7 +474,7 @@ tfoot tr td {
 
 #artist h2 {
     /*Tar bort margin och även text skuggan som skulle ges till titeln från regeln på rad 79*/
-    font-size: 4ex;
+    font-size: 4.5ex;
     text-shadow: none;
     margin: 0;
 }
@@ -499,13 +500,17 @@ dl dd {
     border-radius: 15px;
 }
 
+#artist h3 {
+    font-size: 1.6em;
+}
+
 #artist main>section:nth-child(3) article {
     border-style: solid;
     border-color: #5f5f5f;
     border-width: 1px;
 }
 
-#artist :target h2 {
+#artist :target h3 {
     text-decoration: underline;
 }
 
@@ -653,7 +658,7 @@ a:active {
         /*Ändrar layouten på main till en tvåspaltlayout nu när det finns plats för det med en grid layout. Jag justerar elementen till start så att de visas på samma höjd längst upp i sina rutor. Med hjälp av grid-template-areas så kan jag nu deklarera att lokala naven ska ta upp en hel rad och text delen och informations delen ska dela på den andra raden.*/
         display: grid;
         align-items: start;
-        grid-template-columns: 2fr 1fr;
+        grid-template-columns: 3fr 2fr;
         grid-template-rows: auto auto;
         grid-template-areas:
             "local local"
@@ -798,8 +803,8 @@ a:active {
     /*====== Artister ======*/
     #artist main {
         /*Ändrar layouten till en trespaltig layout genom att ändra grid rows och grid columns och grid template areas*/
-        grid-template-columns: auto auto auto;
-        grid-template-rows: 1fr;
+        grid-template-columns: 1fr 5fr 2fr;
+        grid-template-rows: auto;
         grid-template-areas:
             "local text info";
     }
@@ -830,7 +835,7 @@ a:active {
         box-shadow: none;
     }
 
-    #artist main>section:nth-child(3) article :is(p, h2) {
+    #artist main>section:nth-child(3) article :is(p, h3, h2) {
         text-align: left;
     }
 }

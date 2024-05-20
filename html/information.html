@@ -79,7 +79,7 @@
                 </section>
 
                 <section>
-                    <form action="" method="post"><!--Ett formulär där användaren får skriva in lite kontaktuppgifter och sedan välja och berätta om sina favoriter i the rat pcak -->
+                    <form action="" method="get"><!--Ett formulär där användaren får skriva in lite kontaktuppgifter och sedan välja och berätta om sina favoriter i the rat pcak. Observera att action attributet inte har något värde då formuläret inte ska skicka sin information vidare, detta kommer göra att koden skapar ett valideringsfel.-->
                         <h3>Din favoritartist</h3>
                         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquid officiis ea voluptatem? Ex culpa delectus, harum sapiente iure quis, maxime consequatur error at tenetur quod nobis ipsum nihil excepturi ab.</p>
 
@@ -112,7 +112,7 @@
                             
                             <label for="myndig">Är du över 18?</label>
                             <br>
-                            <input type="checkbox" name="myndig" id="myndig"><!--Valfritt att checka om man är över 18-->
+                            <input type="checkbox" name="myndig" id="myndig" value="sant"><!--Valfritt att checka om man är över 18-->
                         </fieldset>
 
                         <fieldset>
@@ -171,7 +171,7 @@
 
                             <label for="motivering">Hur kommer det sig att du valde den artisten och låten</label>
                             <br>
-                            <textarea name="motivering" id="motivering" cols="30" rows="6" placeholder="Skriv ditt resonemang"></textarea><!--En textarea där användaren kan skriva så mycket som de vill-->
+                            <textarea name="motivering" id="motivering" placeholder="Skriv ditt resonemang"></textarea><!--En textarea där användaren kan skriva så mycket som de vill-->
                             
                             <br>
 
